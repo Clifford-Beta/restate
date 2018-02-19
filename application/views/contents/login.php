@@ -43,7 +43,7 @@
 
         <script>
             function loginnow() {
-        url = "http://localhost/restate/Heavenlink/dologin";
+        url = <?php echo base_url()?>+"Heavenlink/dologin";
         data = { "email": $('#email').val(), "password": $('#password').val() };
         axios.post(url, data)
             .then(function (response) {
