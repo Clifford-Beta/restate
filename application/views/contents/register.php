@@ -50,7 +50,7 @@
 
     <script>
             function register() {
-        url = "http://localhost/restate/Heavenlink/doregister";
+        url = "<?php echo base_url('Heavenlink/doregister')?>";
         data = { "email": $('#email').val(), "password": $('#password').val(),"name": $('#name').val()};
         axios.post(url, data)
             .then(function (response) {
