@@ -1,6 +1,5 @@
 <script src="<?php echo base_url('/ assets/js/modernizr-2.6.2.min.js');?>"></script>
 
-        <script src="<?php echo base_url('/assets/js/jquery-1.10.2.min.js');?>"></script> 
         <script src="<?php echo base_url('/bootstrap/js/bootstrap.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/bootstrap-select.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/bootstrap-hover-dropdown.js');?>"></script>

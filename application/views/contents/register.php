@@ -37,7 +37,7 @@
                                     <input type="password" class="form-control" id="password">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default" onclick="register()">Register</button>
+                                    <button id="regit" type="submit" class="btn btn-default">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -49,8 +49,9 @@
 </div>      
 
     <script>
-            function register() {
-        url = "<?php echo base_url('Heavenlink/doregister')?>";
+        $( "#regit" ).click(function( event ) {
+  event.preventDefault();
+        url = "<?php echo base_url('Heavenlink/doregister'); ?>";
         data = { "email": $('#email').val(), "password": $('#password').val(),"name": $('#name').val()};
         axios.post(url, data)
             .then(function (response) {
@@ -60,5 +61,5 @@
                 toastr.error(error);
             });
 
-    }
+    });
         </script>
