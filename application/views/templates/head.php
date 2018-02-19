@@ -36,4 +36,6 @@
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/style.css');?>">
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/responsive.css');?>">
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/toastr.css');?>">
+        <script src="<?php echo base_url('/assets/js/jquery-1.10.2.min.js');?>"></script> 
+
     </head>

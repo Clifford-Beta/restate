@@ -18,7 +18,7 @@
                                     <input type="password" class="form-control" id="password">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default" onclick="loginnow()"> Log in</button>
+                                    <button id="logit" type="submit" class="btn btn-default"> Log in</button>
                                 </div>
                             </form>
                             <br>
@@ -42,8 +42,9 @@
         </div>      
 
         <script>
-            function loginnow() {
-        url = "<?php echo base_url('Heavenlink/dologin'); ?>" ;
+            $( "#logit" ).click(function( event ) {
+  event.preventDefault();
+  url = "<?php echo base_url('Heavenlink/dologin'); ?>" ;
         // url = "http://localhost/restate/Heavenlink/dologin";
         data = { "email": $('#email').val(), "password": $('#password').val() };
         axios.post(url, data)
@@ -55,6 +56,20 @@
             .catch(function (error) {
                 toastr.error(error);
             });
+});
+            function loginnow() {
+        // url = "<?php echo base_url('Heavenlink/dologin'); ?>" ;
+        // // url = "http://localhost/restate/Heavenlink/dologin";
+        // data = { "email": $('#email').val(), "password": $('#password').val() };
+        // axios.post(url, data)
+        //     .then(function (response) {
+        //         toastr.success("Welcome "+response.data.username);
+        //         console.log(response.data.username);
+                
+        //     })
+        //     .catch(function (error) {
+        //         toastr.error(error);
+        //     });
 
     }
         </script>
