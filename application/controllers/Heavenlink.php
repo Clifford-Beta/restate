@@ -237,7 +237,7 @@ class Heavenlink extends CI_Controller
         if($res != NULL){
             // header('Content-Type: application/json');
             
-        $this->Success($res);
+        $this->Success($res[0]);
         }
         $this->Failed(FALSE);
         
