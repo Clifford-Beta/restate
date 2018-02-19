@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost:3306',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'realestate',
+	'hostname' => 'olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306',
+	'username' => 'ufm9wxun6xyug0cz',
+	'password' => 'be75vbv2waeb5q3g',
+	'database' => 'kh16dp96wkuer5mq',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,3 +94,6 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+
+// mysql://ufm9wxun6xyug0cz:be75vbv2waeb5q3g@olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kh16dp96wkuer5mq
