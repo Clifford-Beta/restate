@@ -13,7 +13,7 @@ class Heavenlink extends CI_Controller
     public function index()
     {
     	$data['title']='Heavenlink Properties | Home';
-       
+       $data['houses']=$this->main_model->get_many_hse(NULL,8);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/index');
@@ -22,7 +22,7 @@ class Heavenlink extends CI_Controller
    public function properties()
     {
     	$data['title']='Heavenlink Properties | Properties';
-
+        $data['houses']=$this->main_model->get_many_hse(NULL,NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/properties');
@@ -80,26 +80,12 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->insert("land",$datea,'land_id');
         
         if($res != FALSE){
-           $data['title']='Heavenlink Properties | Submit Property';
-        $data['error']='';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
+           $this->Success("Done");
         }
-       $data['title']='Heavenlink Properties | Submit Property';
-        $data['error']='Adding Land Failed';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
+       $this->Failed("Failed to add land");
     }
-       $data['title']='Heavenlink Properties | Submit Property';
-        $data['error']=validation_errors();
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
+       $this->ValidationFailed(validation_errors());
+    
     }
 
     public function editland(){
@@ -155,29 +141,12 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->insert("house",$datea,'idhouse');
         
         if($res != FALSE){
-            $data['title']='Heavenlink Properties | Submit Property';
-        $data['error']='';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
+            $this->Success("Done");
         }
-       $data['title']='Heavenlink Properties | Submit Property';
-        $data['error']='Failed to add property';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
+       
+        $this->Failed('Failed to add property');
     }
-        $data['title']='Heavenlink Properties | Submit Property';
-        $data['error']=validation_errors();
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
+       $this->ValidationFailed(validation_errors());
     }
 
     public function edithouse(){
@@ -302,14 +271,14 @@ class Heavenlink extends CI_Controller
         $data = array();
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         parse_str($stream_clean, $data);
-        unset($data['finish']);
-        $img = array();
+        // unset($data['finish']);
+        // $img = array();
         
-        array_push($img,$data['image'],$data['images']);
-        $data['image']=json_encode($img);
+        // array_push($img,$data['image'],$data['images']);
+        // $data['image']=json_encode($img);
         // array_push($data['image'], $data['images']);
-        unset($data['images']);
-         unset($data['city']);
+        // unset($data['images']);
+        //  unset($data['city']);
         if(strtolower($data['type'])=='land'){
             unset($data['type']);
              unset($data['name']);
@@ -322,6 +291,47 @@ class Heavenlink extends CI_Controller
             // unset($data['lr']);
             $this->addhouse($data);
         }
+    }
+
+    public function do_upload(){
+    
+        // Detect form submission.
+        // $datea = $this->input->post();
+        // if($this->input->post()){
+        
+            $path = './uploads/';
+            $this->load->library('upload');
+            
+            /**
+             * Refer to https://ellislab.com/codeigniter/user-guide/libraries/file_uploading.html 
+             * for full argument documentation.
+             *
+             */
+             
+            // Define file rules
+            $this->upload->initialize(array(
+                "upload_path"       =>  $path,
+                "allowed_types"     =>  "gif|jpg|png",
+                "max_size"          =>  '1000000',
+                "max_width"         =>  '1024',
+                "max_height"        =>  '768'
+            ));
+            if($this->upload->do_multi_upload("file") ){
+                
+                $data['upload_data'] = $this->upload->get_multi_upload_data();
+                // var_dump($data['upload_data']);
+                
+                $dta = '<p class = "bg-success">' . count($data['upload_data']) . 'File(s) successfully uploaded.</p>';
+                $this->Success($dta);
+                
+            } else {    
+                // Output the errors
+                $errors = array('error' => $this->upload->display_errors('<p class = "bg-danger">', '</p>'));               
+            
+                $this->Failed($errors);
+                
+            }
+
     }
 
 

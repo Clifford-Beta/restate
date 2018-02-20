@@ -65,6 +65,34 @@ function insert($table,$form_data,$pk_name = NULL){
 
 		}
 
+		function get_specific($table_name,$rule=NULL){
+		//select a particular field from a table based on status
+		$this->db->select('*')->from($table_name);
+		if($rule != NULL){$this->db->where($rule);}
+		// $this->db->where('status',1);
+		$query = $this->db->get();
+		if ($query->num_rows()>0){
+			return $query->result();
+			}
+		else {return NULL;}
+		}
+
+		function get_many_hse($rule=NULL, $limit=NULL){
+		//select a particular field from a table based on status
+		$this->db->select('idhouse as id, house_name as name, house_location as location, house_description as description,
+		house_area as area, house_price as price, house_bedroom as bedroom, house_bath as bathroom, 
+		house_garage as garage, house_image as image, house_status as status, user.username as owner, user.email as email')->from('house')->join('user','user.id = house_owner');
+		if($rule != NULL){$this->db->where($rule);}
+		if($limit != NULL){$this->db->limit($limit);}
+		// $this->db->where('status',1);
+		$this->db->order_by('house.create_time', 'DESC');
+		$query = $this->db->get();
+		if ($query->num_rows()>0){
+			return $query->result_array();
+			}
+		else {return NULL;}
+		}
+
 
 
 

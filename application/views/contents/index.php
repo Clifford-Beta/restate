@@ -205,119 +205,23 @@
 
                 <div class="row">
                     <div class="proerty-th">
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
+                        
+                        <?php  foreach($houses as $key=>$value){  ?>
+
+                                <div class="col-sm-6 col-md-3 p0">
+                            <div class="box-two proerty-item" id="<?php echo $value['id'] ?>">
                                 <div class="item-thumb">
                                     <a href="<?php echo site_url('property-1');?>" ><img src="<?php echo base_url('/assets/img/demo/property-1.jpg');?>"></a>
                                 </div>
                                 <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-1');?>" >Super nice villa 1</a></h5>
+                                    <h5><a href="<?php echo site_url('Heavenlink/property-1');?>" ><?php echo $value['name'];?></a></h5>
                                     <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
+                                    <span class="pull-left"><b>Area :</b> <?php echo $value['area']; ?>m </span>
+                                    <span class="proerty-price pull-right">Shs.<?php echo $value['price'];?></span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="<?php echo site_url('Heavenlink/property-2');?>" ><img src="<?php echo base_url('/assets/img/demo/property-2.jpg');?>"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-2');?>" >Super nice villa 2</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="<?php echo site_url('Heavenlink/property-3');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-3');?>" >Super nice villa 3</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="<?php echo site_url('Heavenlink/property-1');?>" ><img src="<?php echo base_url('assets/img/demo/property-4.jpg');?>"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-1');?>" >Super nice villa 4</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="<?php echo site_url('Heavenlink/property-3');?>" ><img src="<?php echo base_url('assets/img/demo/property-2.jpg');?>"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-3');?>" >Super nice villa 5</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="<?php echo site_url('Heavenlink/property-2');?>" ><img src="<?php echo base_url('assets/img/demo/property-4.jpg');?>"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-2');?>" >Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="<?php echo site_url('Heavenlink/property-1');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="<?php echo site_url('Heavenlink/property-1');?>" >Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b>Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right">Shs. 300,000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--<div class="col-sm-6 col-md-3 p0">
-                            <div class="box-tree more-proerty text-center">
-                                <div class="item-tree-icon">
-                                    <i class="fa fa-th"></i>
-                                </div>
-                                <div class="more-entry overflow">
-                                    <h5><a href="property-1.html" >CAN'T DECIDE ? </a></h5>
-                                    <h5 class="tree-sub-ttl">Show all properties</h5>
-                                    <button class="btn border-btn more-black" value="All properties">All properties</button>
-                                </div>
-                            </div>
-                        </div>-->
+                       <?php } ?>  
 
                     </div>
                 </div>

@@ -16,7 +16,8 @@
                     <div class="wizard-container"> 
                             
                         <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <form action="<?php echo base_url('Heavenlink/dosubmit_property'); ?>" method="POST" id="myform">                        
+                            <?php echo form_open_multipart('Heavenlink/dosubmit_property', array('class' => 'upload-image-form'));?>
+                            <!-- <form action="<?php// echo base_url('Heavenlink/dosubmit_property'); ?>" method="POST" id="myform">                         -->
                                 <div class="wizard-header">
                                     <h3>
                                         <b>Submit</b> YOUR PROPERTY <br>
@@ -36,6 +37,7 @@
                                     <div class="tab-pane" id="step1">
                                          <?php echo $error;?>
                                         <div class="row p-b-15  ">
+                                            <span class = "upload-image-messages"></span>
                                             <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
                                             <div class="col-sm-4 col-sm-offset-1">
                                                 <div class="picture-container">
@@ -182,7 +184,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label for="property-images">Chose Images :</label>
-                                                    <input class="form-control" type="file" id="property-images" name="images">
+                                                    <input class="form-control" type="file"  multiple="multiple" accept="image/*" id="property-images" name="images[]" size="20">
                                                     <p class="help-block">Select multiple images for your property .</p>
                                                 </div>
                                             </div>
@@ -252,45 +254,112 @@
             </div>
         </div>
 
-        <script>
-    //     $( "#propertit" ).click(function( event ) {
-    //         // event.preventDefault();
-        
-    //         console.log("submiting");
-        
-    //     var myForm = $("#myform");
-    //     console.log(myForm);
-        
-    //     formData = new FormData();
-    //     formData.append('user',"clifford");
-    //     formData.append('images',$("#property-images").val());
-    //     console.log(formData);
-    //     url = "<?php echo base_url('Heavenlink/dosubmit_property'); ?>";
-    //     // data = { "email": $('#email').val(), "password": $('#password').val(),"name": $('#name').val()};
-    //                 axios({
-    //             method: 'post',
-    //             url: url,
-    //             data: formData,
-    //             config: { headers: {'Content-Type': 'multipart/form-data','Accept' : 'multipart/form-data' }}
-    //         })
-    //             .then(function (response) {
-    //                 //handle success
-    //                 console.log(response);
-    //                 toastr.success("Posted successfully");
-    //             })
-    //             .catch(function (response) {
-    //                 //handle error
-    //                 console.log(response);
-                    
-    //             });
-    //                    // }
-    //     axios.post(url, formData)
-    //         .then(function (response) {
-                
-    //         })
-    //         .catch(function (error) {
-                
-    //         });
+             <script>                    
+        // jQuery(document).ready(function($) {
 
-    // });
+        //     var options = {
+        //         beforeSend: function(){
+        //             // Replace this with your loading gif image
+        //             $(".upload-image-messages").html('<p><img src = "<?php echo base_url('assets/img/loading.gif') ?>" class = "loader" /></p>');
+        //         },
+        //         complete: function(response){
+        //             // Output AJAX response to the div container
+        //             $(".upload-image-messages").html(response.responseText);
+        //             $('html, body').animate({scrollTop: $(".upload-image-messages").offset().top-100}, 150);
+                    
+        //         }
+        //     };  
+        //     // Submit the form
+        //     $(".upload-image-form").ajaxForm(options);  
+
+        //     return false;
+            
+        // });
+
+        $( "#propertit" ).click(function( event ) {
+            event.preventDefault();
+            var data = new FormData();
+            jQuery.each($('#wizard-picture')[0].files, function(i, file) {
+                data.append('file[]', file);
+            });
+            jQuery.each(jQuery('#property-images')[0].files, function(i, file) {
+                data.append('file[]', file);
+            });
+            jQuery.ajax({
+                url: '<?php echo base_url('Heavenlink/do_upload'); ?>',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                success: function(data){
+                    toastr.success("Files uploaded successfully");
+
+                        jQuery.ajax({
+                url: '<?php echo base_url('Heavenlink/dosubmit_property'); ?>',
+                data: $(".upload-image-form").serialize(),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                success: function(data){
+                    toastr.success("Property added successfully");
+                    //   console.log( $(".upload-image-form").serialize() );
+ 
+                    
+                },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                 toastr.error(errorThrown);
+                     }  
+                
+            });
+
+                    //   console.log( $(".upload-image-form").serialize() );
+ 
+                    
+                },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                 toastr.error(errorThrown);
+                     }  
+                
+            });
+        
+        //     console.log("submiting");
+        
+        // var myForm = $("#myform");
+        // console.log(myForm);
+        
+        // formData = new FormData();
+        // formData.append('user',"clifford");
+        // formData.append('images',$("#property-images").val());
+        // console.log(formData);
+        // // data = { "email": $('#email').val(), "password": $('#password').val(),"name": $('#name').val()};
+        //             axios({
+        //         method: 'post',
+        //         url: url,
+        //         data: formData,
+        //         config: { headers: {'Content-Type': 'multipart/form-data','Accept' : 'multipart/form-data' }}
+        //     })
+        //         .then(function (response) {
+        //             //handle success
+        //             console.log(response);
+        //             toastr.success("Posted successfully");
+        //         })
+        //         .catch(function (response) {
+        //             //handle error
+        //             console.log(response);
+                    
+        //         });
+        //                // }
+        // axios.post(url, formData)
+        //     .then(function (response) {
+                
+        //     })
+        //     .catch(function (error) {
+                
+        //     });
+
+    });
         </script>
