@@ -17,7 +17,7 @@
         <script src="<?php echo base_url('/assets/js/jquery.bootstrap.wizard.js');?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/js/jquery.validate.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/wizard.js');?>"></script>
-        <script src="<?php echo base_url('/assets/js/axios.js');?>"></script>
+        <script src="<?php echo base_url('/assets/js/axios.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/toastr.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/main.js');?>"></script>
     
