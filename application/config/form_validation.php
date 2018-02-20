@@ -30,7 +30,7 @@ $config = array(
                         'rules' => 'trim|required|numeric'
                 )
         ),
-        'land' => array(
+        'editland' => array(
                 array(
                         'field' => 'location',
                           'label' => 'location',
@@ -55,13 +55,13 @@ $config = array(
                         'field' => 'owner',
                         'label' => 'owner',
                         'rules' => 'trim|numeric'
-                )
-                ,
+                ),
                  array(
                         'field' => 'id',
                         'label' => 'id',
                         'rules' => 'trim|numeric|required'
                 )
+                
         ),
         'house' => array(
                 array(

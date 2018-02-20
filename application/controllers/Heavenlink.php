@@ -67,9 +67,9 @@ class Heavenlink extends CI_Controller
 
 
 
-    public function addland(){
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        $data = json_decode($stream_clean,true);
+    private function addland($data){
+        // $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        // $data = json_decode($stream_clean,true);
         
         $this->form_validation->set_data($data);
     if($this->form_validation->run('land')!=false){
@@ -80,26 +80,26 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->insert("land",$datea,'land_id');
         
         if($res != FALSE){
-            $this->output
-        ->set_status_header(200)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+           $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
         }
-        $this->output
-        ->set_status_header(403)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(FALSE, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+       $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='Adding Land Failed';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
     }
-    $this->output
-        ->set_status_header(400)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(validation_errors(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+       $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']=validation_errors();
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
     }
 
     public function editland(){
@@ -115,33 +115,36 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->update("editland",$datea,array('land_id'=>$datea["id"]));
         
         if($res != FALSE){
-            $this->output
-        ->set_status_header(200)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+            $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
         }
-        $this->output
-        ->set_status_header(403)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(FALSE, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+        $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='Property editing failed';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
     }
-    $this->output
-        ->set_status_header(400)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(validation_errors(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+    $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']=validation_errors();
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
     }
 
     
 
-     public function addhouse(){
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        $data = json_decode($stream_clean,true);
+     private function addhouse($data){
+        // $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        // $data = json_decode($stream_clean,true);
         
         $this->form_validation->set_data($data);
     if($this->form_validation->run('house')!=false){
@@ -152,26 +155,29 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->insert("house",$datea,'idhouse');
         
         if($res != FALSE){
-            $this->output
-        ->set_status_header(200)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+            $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
         }
-        $this->output
-        ->set_status_header(403)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(FALSE, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+       $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='Failed to add property';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
     }
-    $this->output
-        ->set_status_header(400)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(validation_errors(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+        $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']=validation_errors();
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
     }
 
     public function edithouse(){
@@ -184,29 +190,34 @@ class Heavenlink extends CI_Controller
         foreach ($data as $key => $value){
                 $datea['house_'.$key] = $value;
         }
-        $res = $this->main_model->update("edithouse",$datea,array('idhouse'=>$datea["id"]));
+        $res = $this->main_model->update("house",$datea,array('idhouse'=>$datea["id"]));
         
         if($res != FALSE){
-            $this->output
-        ->set_status_header(200)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+            $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']='';
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
+    
         }
-        $this->output
-        ->set_status_header(403)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(FALSE, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+        $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']= "Adding property failed";
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
     }
-    $this->output
-        ->set_status_header(400)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(validation_errors(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-        exit;
+    $data['title']='Heavenlink Properties | Submit Property';
+        $data['error']=validation_errors();
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+        return;
+    
     }
 
 
@@ -280,11 +291,37 @@ class Heavenlink extends CI_Controller
     public function submit_property()
     {
         $data['title']='Heavenlink Properties | Submit Property';
-
+        $data['error']='';
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/submit-property');
         $this->load->view('/templates/footer',$data);
+    }
+    public function dosubmit_property()
+    {
+        $data = array();
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        parse_str($stream_clean, $data);
+        unset($data['finish']);
+        $img = array();
+        
+        array_push($img,$data['image'],$data['images']);
+        $data['image']=json_encode($img);
+        // array_push($data['image'], $data['images']);
+        unset($data['images']);
+         unset($data['city']);
+        if(strtolower($data['type'])=='land'){
+            unset($data['type']);
+             unset($data['name']);
+            unset($data['bath']);
+             unset($data['bedroom']);
+            unset($data['status']);
+            $this->addland($data);
+        }else{
+            unset($data['type']);
+            // unset($data['lr']);
+            $this->addhouse($data);
+        }
     }
 
 
