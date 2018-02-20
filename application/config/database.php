@@ -96,4 +96,4 @@ $db['default'] = array(
 );
 
 
-// mysql://ufm9wxun6xyug0cz:be75vbv2waeb5q3g@olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kh16dp96wkuer5mq
+// mysql:ufm9wxun6xyug0cz:be75vbv2waeb5q3g@olxl65dqfuqr6s4y.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kh16dp96wkuer5mq
