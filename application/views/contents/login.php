@@ -80,24 +80,15 @@
    
 
         <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            function loginnow() {
-        url = "<?php echo base_url('Heavenlink/dologin')?>";
-
-=======
-=======
 var data = sessionStorage.getItem('isLogged');
             if(data){
                 window.location.replace("<?php echo base_url('Heavenlink/submit_property');?>");
             }
 
->>>>>>> local
             $( "#logit" ).click(function( event ) {
   event.preventDefault();
   url = "<?php echo base_url('Heavenlink/dologin'); ?>" ;
         // url = "http://localhost/restate/Heavenlink/dologin";
->>>>>>> local
         data = { "email": $('#email').val(), "password": $('#password').val() };
         // data = $("#loginform").serialize()
         axios.post(url, data)
