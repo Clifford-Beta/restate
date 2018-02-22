@@ -321,8 +321,10 @@ class Heavenlink extends CI_Controller
                 
                 $data['upload_data'] = $this->upload->get_multi_upload_data();
                 // var_dump($data['upload_data']);
-                
-                $dta = '<p class = "bg-success">' . count($data['upload_data']) . 'File(s) successfully uploaded.</p>';
+                 //Returns array of containing all of the data related to the file you uploaded.
+                $dta = array('msg'=>'<p class = "bg-success">' . count($data['upload_data']) . 'File(s) successfully uploaded.</p>',
+            'dta'=>$data
+            );
                 $this->Success($dta);
                 
             } else {    

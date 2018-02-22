@@ -278,27 +278,34 @@
 
         $( "#propertit" ).click(function( event ) {
             event.preventDefault();
-            var data = new FormData();
+            var datea = new FormData();
             jQuery.each($('#wizard-picture')[0].files, function(i, file) {
-                data.append('file[]', file);
+                datea.append('file[]', file);
             });
+            
             jQuery.each(jQuery('#property-images')[0].files, function(i, file) {
-                data.append('file[]', file);
+                datea.append('file[]', file);
             });
             jQuery.ajax({
                 url: '<?php echo base_url('Heavenlink/do_upload'); ?>',
-                data: data,
+                data: datea,
                 cache: false,
                 contentType: false,
                 processData: false,
                 method: 'POST',
                 type: 'POST', // For jQuery < 1.9
                 success: function(data){
-                    toastr.success("Files uploaded successfully");
+                    imgs = [];
+                    console.log(data.dta.upload_data)
+                        data.dta.upload_data.forEach(element => {
+                           imgs.push(element.file_name); 
+                        });
+                        console.log(imgs);
+                    toastr.success(data.msg);
 
                         jQuery.ajax({
                 url: '<?php echo base_url('Heavenlink/dosubmit_property'); ?>',
-                data: $(".upload-image-form").serialize(),
+                data: $(".upload-image-form").serialize()+'&image='+JSON.stringify(imgs),
                 cache: false,
                 contentType: false,
                 processData: false,
