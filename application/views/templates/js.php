@@ -21,7 +21,26 @@
         <script src="<?php echo base_url('/assets/js/toastr.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/main.js');?>"></script>
         <script type = "text/javascript" src = "<?php echo base_url('/assets/js/jquery.form.js');?>"></script>
-       
+        <script src="<?php echo base_url('/assets/js/lightslider.min.js');?>" type="text/javascript"></script>
+
+
+         <script>
+            $(document).ready(function () {
+
+                $('#image-gallery').lightSlider({
+                    gallery: true,
+                    item: 1,
+                    thumbItem: 9,
+                    slideMargin: 0,
+                    speed: 500,
+                    auto: true,
+                    loop: true,
+                    onSliderLoad: function () {
+                        $('#image-gallery').removeClass('cS-hidden');
+                    }
+                });
+            });
+        </script>
           
     </body>
 </html>

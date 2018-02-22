@@ -34,7 +34,7 @@ class Heavenlink extends CI_Controller
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/single');
+        $this->load->view('/contents/single',$data);
         $this->load->view('/templates/footer',$data);
     }
      public function propertyb()
@@ -274,7 +274,6 @@ class Heavenlink extends CI_Controller
         parse_str($stream_clean, $data);
         // unset($data['finish']);
         // $img = array();
-        
         // array_push($img,$data['image'],$data['images']);
         // $data['image']=json_encode($img);
         // array_push($data['image'], $data['images']);
