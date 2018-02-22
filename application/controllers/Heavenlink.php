@@ -28,13 +28,13 @@ class Heavenlink extends CI_Controller
         $this->load->view('/contents/properties');
         $this->load->view('/templates/footer',$data);
     }
-    /*public function propertya()
+    public function propertya()
     {
         $data['title']='Heavenlink Properties | Properties';
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/propertya');
+        $this->load->view('/contents/single');
         $this->load->view('/templates/footer',$data);
     }
      public function propertyb()
@@ -54,11 +54,11 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/propertyc');
         $this->load->view('/templates/footer',$data);
-    }*/
+    }
     public function land()
     {
     	$data['title']='Heavenlink Properties | Land';
-
+        $data['houses']=$this->main_model->get_many_lnd(NULL,NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/land');

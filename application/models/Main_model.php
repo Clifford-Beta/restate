@@ -93,6 +93,21 @@ function insert($table,$form_data,$pk_name = NULL){
 		else {return NULL;}
 		}
 
+		function get_many_lnd($rule=NULL, $limit=NULL){
+		//select a particular field from a table based on status
+		$this->db->select('land_id as id,land_lr as lr,  land_location as location, land_description as description,
+		land_area as area, land_price as price, land_image as image, user.username as owner, user.email as email')->from('land')->join('user','user.id = land_owner');
+		if($rule != NULL){$this->db->where($rule);}
+		if($limit != NULL){$this->db->limit($limit);}
+		// $this->db->where('status',1);
+		$this->db->order_by('land.create_time', 'DESC');
+		$query = $this->db->get();
+		if ($query->num_rows()>0){
+			return $query->result_array();
+			}
+		else {return NULL;}
+		}
+
 
 
 
