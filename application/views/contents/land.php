@@ -54,70 +54,9 @@
 
                         <div class="section clear"> 
                             <div id="list-type" class="proerty-th">
-                                <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                        </div>
 
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs. 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                 <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div> 
-
-                                <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-2.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs. 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div> 
-
-                                <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-1.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs. 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div> 
+                        
+                             <?php  foreach($houses as $key=>$value){  ?>
 
                                 <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
@@ -126,124 +65,16 @@
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
+                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> <?php echo $value['lr']; ?> </a></h5>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
+                                            <span class="pull-left"><b> Area :</b> <?php echo $value['area'];?>m </span>
+                                            <span class="proerty-price pull-right"> Shs. <?php echo $value['price'];?></span>
+                                            <p style="display: none;"><?php $value['description']; ?></p>
+                                        </div>
                                     </div>
                                 </div> 
-
-                                 <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div> 
-
-                                 <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div> 
-
-                                 <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>  
-
-                                 <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div> 
-
-                                 <div class="col-sm-6 col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
-                                        </div>
-
-                                        <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> Super nice villa </a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> Shs 300,000</span>
-                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                            <div class="property-icon">
-                                                <img src="<?php echo base_url('assets/img/icon/bed.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/shawer.png');?>">
-                                                <img src="<?php echo base_url('assets/img/icon/cars.png');?>"> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>  
+                       <?php } ?> 
+                                  
                             </div>
                         </div>
                         <div class="section">

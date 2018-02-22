@@ -28,13 +28,13 @@ class Heavenlink extends CI_Controller
         $this->load->view('/contents/properties');
         $this->load->view('/templates/footer',$data);
     }
-    /*public function propertya()
+    public function propertya()
     {
         $data['title']='Heavenlink Properties | Properties';
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/propertya');
+        $this->load->view('/contents/single');
         $this->load->view('/templates/footer',$data);
     }
      public function propertyb()
@@ -54,11 +54,11 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/propertyc');
         $this->load->view('/templates/footer',$data);
-    }*/
+    }
     public function land()
     {
     	$data['title']='Heavenlink Properties | Land';
-
+        $data['houses']=$this->main_model->get_many_lnd(NULL,NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/land');
@@ -216,7 +216,7 @@ class Heavenlink extends CI_Controller
         
         if($res != NULL){
             // header('Content-Type: application/json');
-            
+            // $this->session->set_userdata('user',$res[0]->username);
         $this->Success($res[0]);
         }
         $this->Failed(FALSE);
@@ -254,7 +254,7 @@ class Heavenlink extends CI_Controller
         }
         $this->Failed($res);
     }
-   $this->ValidationFailed(valdation_errors());
+   $this->ValidationFailed(validation_errors());
         
     }
     public function submit_property()
@@ -282,6 +282,7 @@ class Heavenlink extends CI_Controller
         //  unset($data['city']);
         if(strtolower($data['type'])=='land'){
             unset($data['type']);
+            $data['lr']=$data['name'];
              unset($data['name']);
             unset($data['bath']);
              unset($data['bedroom']);
@@ -321,8 +322,10 @@ class Heavenlink extends CI_Controller
                 
                 $data['upload_data'] = $this->upload->get_multi_upload_data();
                 // var_dump($data['upload_data']);
-                
-                $dta = '<p class = "bg-success">' . count($data['upload_data']) . 'File(s) successfully uploaded.</p>';
+                 //Returns array of containing all of the data related to the file you uploaded.
+                $dta = array('msg'=>'<p class = "bg-success">' . count($data['upload_data']) . 'File(s) successfully uploaded.</p>',
+            'dta'=>$data
+            );
                 $this->Success($dta);
                 
             } else {    
