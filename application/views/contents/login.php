@@ -80,6 +80,11 @@
    
 
         <script>
+var data = sessionStorage.getItem('isLogged');
+            if(data){
+                window.location.replace("<?php echo base_url('Heavenlink/submit_property');?>");
+            }
+
             $( "#logit" ).click(function( event ) {
   event.preventDefault();
   url = "<?php echo base_url('Heavenlink/dologin'); ?>" ;
@@ -89,6 +94,8 @@
         axios.post(url, data)
             .then(function (response) {
                 toastr.success("Welcome "+response.data.username);
+                ss = {'name':response.data.username,'email':response.data.email,'isLogged':true,'id':response.data.id};
+                setSess(ss);
                 console.log(response.data.username);
                 
             })
@@ -105,13 +112,26 @@
         axios.post(url, data)
             .then(function (response) {
                 toastr.success("Welcome "+data['name']);
-                // console.log(response.data.username);
+
+                console.log(response.data);
+                ss = {'name':data['name'],'email':data['email'],'isLogged':true,'id':response.data.inserted_id};
+                setSess(ss);
+
                 
             })
             .catch(function (error) {
                 toastr.error(error);
             });
 });
+
+function setSess(params) {
+    sessionStorage.User = params.name;
+    sessionStorage.Email = params.email;
+    sessionStorage.isLogged = params.isLogged;
+    sessionStorage.Id = params.id;
+    window.location.replace("<?php echo base_url('Heavenlink/submit_property');?>");
+    
+}
         </script>
        <?php  $this->load->view('/templates/js'); ?>
 

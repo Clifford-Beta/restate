@@ -325,41 +325,11 @@
                      }  
                 
             });
-        
-        //     console.log("submiting");
-        
-        // var myForm = $("#myform");
-        // console.log(myForm);
-        
-        // formData = new FormData();
-        // formData.append('user',"clifford");
-        // formData.append('images',$("#property-images").val());
-        // console.log(formData);
-        // // data = { "email": $('#email').val(), "password": $('#password').val(),"name": $('#name').val()};
-        //             axios({
-        //         method: 'post',
-        //         url: url,
-        //         data: formData,
-        //         config: { headers: {'Content-Type': 'multipart/form-data','Accept' : 'multipart/form-data' }}
-        //     })
-        //         .then(function (response) {
-        //             //handle success
-        //             console.log(response);
-        //             toastr.success("Posted successfully");
-        //         })
-        //         .catch(function (response) {
-        //             //handle error
-        //             console.log(response);
-                    
-        //         });
-        //                // }
-        // axios.post(url, formData)
-        //     .then(function (response) {
-                
-        //     })
-        //     .catch(function (error) {
-                
-        //     });
 
     });
+
+     var data = sessionStorage.getItem('isLogged');
+            if(!data){
+                window.location.replace("<?php echo base_url();?>");
+            }
         </script>

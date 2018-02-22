@@ -216,7 +216,7 @@ class Heavenlink extends CI_Controller
         
         if($res != NULL){
             // header('Content-Type: application/json');
-            
+            // $this->session->set_userdata('user',$res[0]->username);
         $this->Success($res[0]);
         }
         $this->Failed(FALSE);
@@ -254,7 +254,7 @@ class Heavenlink extends CI_Controller
         }
         $this->Failed($res);
     }
-   $this->ValidationFailed(valdation_errors());
+   $this->ValidationFailed(validation_errors());
         
     }
     public function submit_property()
@@ -281,6 +281,7 @@ class Heavenlink extends CI_Controller
         //  unset($data['city']);
         if(strtolower($data['type'])=='land'){
             unset($data['type']);
+            $data['lr']=$data['name'];
              unset($data['name']);
             unset($data['bath']);
              unset($data['bedroom']);
