@@ -47,7 +47,7 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('<?php echo site_url('Heavenlink/login');?>')" data-wow-delay="0.45s">Login</button>
-                        <!--<button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('<?php// echo site_url('Heavenlink/submit-property');?>')" data-wow-delay="0.48s">Submit</button>-->
+                        <button class="navbar-btn nav-button wow fadeInRight" onclick="logout()" class="hidden" data-wow-delay="0.48s" id="lgout">Logout</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo site_url('Heavenlink/index');?>">Home</a></li>
@@ -60,3 +60,21 @@
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
+
+        <script>
+        var data = sessionStorage.getItem('isLogged');
+            if(data==true){
+                     $("#lgout").removeClass("hidden");
+            }
+   
+            function logout(){
+                 for (var obj in sessionStorage) {
+                if (sessionStorage.hasOwnProperty(obj)) {
+                    sessionStorage.removeItem(obj);
+                }
+                }
+                console.log("logged out!!");
+                window.location.replace("<?php echo base_url('Heavenlink/');?>");
+
+            }
+        </script>

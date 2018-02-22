@@ -125,7 +125,7 @@
                                                         <label>Owner  :</label>
                                                         <select id="basic" name="owner" class="selectpicker show-tick form-control">
                                                             <option value='1'>Default</option>
-                                                            <option value='2'>Me </option>
+                                                            <option value='' id="here">Me </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -255,26 +255,8 @@
         </div>
 
              <script>                    
-        // jQuery(document).ready(function($) {
-
-        //     var options = {
-        //         beforeSend: function(){
-        //             // Replace this with your loading gif image
-        //             $(".upload-image-messages").html('<p><img src = "<?php echo base_url('assets/img/loading.gif') ?>" class = "loader" /></p>');
-        //         },
-        //         complete: function(response){
-        //             // Output AJAX response to the div container
-        //             $(".upload-image-messages").html(response.responseText);
-        //             $('html, body').animate({scrollTop: $(".upload-image-messages").offset().top-100}, 150);
-                    
-        //         }
-        //     };  
-        //     // Submit the form
-        //     $(".upload-image-form").ajaxForm(options);  
-
-        //     return false;
-            
-        // });
+         var elem = document.getElementById('here');
+            elem.value = sessionStorage.getItem('Id');
 
         $( "#propertit" ).click(function( event ) {
             event.preventDefault();
