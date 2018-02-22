@@ -269,16 +269,8 @@ class Heavenlink extends CI_Controller
     public function dosubmit_property()
     {
         $data = array();
-        var_dump($_FILES);
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         parse_str($stream_clean, $data);
-        // unset($data['finish']);
-        // $img = array();
-        // array_push($img,$data['image'],$data['images']);
-        // $data['image']=json_encode($img);
-        // array_push($data['image'], $data['images']);
-        // unset($data['images']);
-        //  unset($data['city']);
         if(strtolower($data['type'])=='land'){
             unset($data['type']);
             $data['lr']=$data['name'];
