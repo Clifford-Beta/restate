@@ -56,7 +56,7 @@
                             <div id="list-type" class="proerty-th">
 
                         
-                             <?php  foreach($houses as $key=>$value){  ?>
+                             <?php  if (!empty($houses)) { foreach($houses as $key=>$value){  ?>
 
                                 <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                 </div> 
-                       <?php } ?> 
+                       <?php }} ?> 
                                   
                             </div>
                         </div>

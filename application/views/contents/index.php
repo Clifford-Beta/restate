@@ -205,8 +205,9 @@
 
                 <div class="row">
                     <div class="proerty-th">
-                        
-                        <?php  foreach($houses as $key=>$value){  ?>
+
+
+                        <?php if (!empty($houses)) { foreach($houses as $key=>$value){  ?>
 
                                 <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item" id="<?php echo $value['id'] ?>">
@@ -221,7 +222,7 @@
                                 </div>
                             </div>
                         </div>
-                       <?php } ?>  
+                       <?php }} ?>  
 
                     </div>
                 </div>
