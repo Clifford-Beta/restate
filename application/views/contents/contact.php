@@ -19,27 +19,26 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-map-marker"></i> Address</h3>
-                                <p>13/25 New Avenue
-                                    <br>New Heaven
-                                    <br>45Y 73J
-                                    <br>England
+                                <p>Baywater Court
+                                    <br>Block B
+                                    <br>Second Floor Suite 6
+                                    <br>P.O BOX 12163-00100 Nairobi
                                     <br>
-                                    <strong>Great Britain</strong>
+                                    <strong>Kenya</strong>
                                 </p>
                             </div>
                             <!-- /.col-sm-4 -->
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-phone"></i> Call center</h3>
-                                <p class="text-muted">This number is toll free if calling from Great Britain otherwise we advise you to use the electronic form of communication.</p>
-                                <p><strong>+33 555 444 333</strong></p>
+                                <p class="text-muted"></p>
+                                <p><strong>+254 725 600 051</strong></p>
                             </div>
                             <!-- /.col-sm-4 -->
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-envelope"></i> Electronic support</h3>
                                 <p class="text-muted">Please feel free to write an email to us or to use our electronic ticketing system.</p>
                                 <ul>
-                                    <li><strong><a href="mailto:">info@fakeemail.com</a></strong>   </li>
-                                    <li><strong><a href="#">Ticketio</a></strong> - our ticketing support platform</li>
+                                    <li><strong><a href="mailto:">info@heavenlinkproperties.com</a></strong>   </li>
                                 </ul>
                             </div>
                             <!-- /.col-sm-4 -->

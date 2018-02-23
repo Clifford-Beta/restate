@@ -56,20 +56,22 @@
                             <div id="list-type" class="proerty-th">
 
                         
-                             <?php  if (!empty($houses)) { foreach($houses as $key=>$value){  ?>
+                             <?php  if (!empty($houses)) { foreach($houses as $key=>$value){ 
+                                 $img = json_decode($value['image'],true);
+                                 ?>
 
                                 <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a href="<?php echo site_url('Heavenlink/propertya');?>" ><img src="<?php echo base_url('assets/img/demo/property-3.jpg');?>"></a>
+                                            <a href="<?php echo base_url('Heavenlink/property/l/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="<?php echo site_url('Heavenlink/propertya');?>"> <?php echo $value['lr']; ?> </a></h5>
+                                            <h5><a href="<?php echo base_url('Heavenlink/property/l/').$value['id'];?>"> <?php echo $value['name']; ?> </a></h5>
                                             <div class="dot-hr"></div>
                                             <span class="pull-left"><b> Area :</b> <?php echo $value['area'];?>m </span>
                                             <span class="proerty-price pull-right"> Shs. <?php echo $value['price'];?></span>
-                                            <p style="display: none;"><?php $value['description']; ?></p>
+                                            <p style="display: none;"><?php echo $value['description']; ?></p>
                                         </div>
                                     </div>
                                 </div> 

@@ -28,10 +28,14 @@ class Heavenlink extends CI_Controller
         $this->load->view('/contents/properties');
         $this->load->view('/templates/footer',$data);
     }
-    public function propertya()
+    public function property($type, $id)
     {
         $data['title']='Heavenlink Properties | Properties';
-
+        if($type=='l'){
+            $data['house']=$this->main_model->get_many_lnd(array('land_id'=>$id));
+        }else{
+           $data['house']=$this->main_model->get_many_hse(array('idhouse'=>$id)); 
+        }        
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/single',$data);
@@ -305,9 +309,9 @@ class Heavenlink extends CI_Controller
             $this->upload->initialize(array(
                 "upload_path"       =>  $path,
                 "allowed_types"     =>  "gif|jpg|png",
-                "max_size"          =>  '1000000',
-                "max_width"         =>  '1024',
-                "max_height"        =>  '768'
+                "max_size"          =>  '10000000',
+                "max_width"         =>  '10240',
+                "max_height"        =>  '7680'
             ));
             if($this->upload->do_multi_upload("file") ){
                 

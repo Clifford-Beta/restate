@@ -51,9 +51,21 @@
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo site_url('Heavenlink/index');?>">Home</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="<?php echo site_url('Heavenlink/properties');?>">Houses</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="<?php echo site_url('Heavenlink/land');?>">Land</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="<?php echo site_url('Heavenlink/property');?>">About Us</a></li>
+                        <li class="dropdown ymm-sw " data-wow-delay="0.1s">
+                            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Property <b class="caret"></b></a>
+                            <ul class="dropdown-menu navbar-nav">
+                                <li>
+                                    <a class="" href="<?php echo site_url('Heavenlink/properties');?>">Houses</a>
+                                </li>
+                                <li>
+                                    <a class="" href="<?php echo site_url('Heavenlink/land');?>">Land</a>
+                                </li>
+                                <li>
+                                    <a class="" href="<?php echo site_url('Heavenlink/submit_property');?>">Submit</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="<?php //echo site_url('Heavenlink/property');?>">About Us</a></li> -->
                         <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="<?php echo site_url('Heavenlink/contact');?>">Contact Us</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
