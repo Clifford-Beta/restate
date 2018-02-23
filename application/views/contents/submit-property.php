@@ -131,37 +131,29 @@
                                                 </div>
                                                 
                                             </div>
+                                           
                                             <div class="col-sm-12 padding-top-15">                                                   
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="property-geo">Bedrooms :</label>
-                                                        <input type="text" name="bedroom" class="span2" value="" data-slider-min="0" 
-                                                               data-slider-max="600" data-slider-step="5" 
-                                                               data-slider-value="[250,450]" id="min-bed" ><br />
-                                                        <b class="pull-left color">1</b> 
-                                                        <b class="pull-right color">120</b>
+                                                        <input type="number" name="bedroom" class="form-control"  ><br />
+                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
 
                                                     <div class="form-group">
                                                         <label for="price-range">Bathrooms</label>
-                                                        <input name="bath" type="text" class="span2" value="" data-slider-min="0" 
-                                                               data-slider-max="600" data-slider-step="5" 
-                                                               data-slider-value="[250,450]" id="min-baths" ><br />
-                                                        <b class="pull-left color">1</b> 
-                                                        <b class="pull-right color">120</b>
+                                                        <input name="bath" type="number" class="form-control"  ><br />
+                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
 
                                                     <div class="form-group">
                                                         <label for="property-geo">Property geo (m2) :</label>
-                                                        <input type="text" class="span2" value="" name="area" data-slider-min="0" 
-                                                               data-slider-max="600" data-slider-step="5" 
-                                                               data-slider-value="[50,450]" id="property-geo" ><br />
-                                                        <b class="pull-left color">40m</b> 
-                                                        <b class="pull-right color">12000m</b>
+                                                        <input type="number" class="form-control"  name="area"  ><br />
+                                                        
                                                     </div>
                                                 </div>   
                                             </div>
