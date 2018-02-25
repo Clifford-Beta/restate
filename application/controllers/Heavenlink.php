@@ -318,6 +318,28 @@ class Heavenlink extends CI_Controller
                 $data['upload_data'] = $this->upload->get_multi_upload_data();
                 // var_dump($data['upload_data']);
                  //Returns array of containing all of the data related to the file you uploaded.
+                 //loop throuth uploaded files and resize them
+                 foreach($data['upload_data'] as $key => $value){
+                    //  var_dump($key);
+                    $this->editarFotoMini($value['full_path']);
+                    //  var_dump($value['full_path']);
+                //      $config['image_library'] = 'gd2';
+                //     $config['source_image'] = $value['full_path']; //get original image
+                //     $config['maintain_ratio'] = TRUE;
+                //     $config['width'] = 750;
+                //     $config['height'] = 400;
+                //     $this->load->library('image_lib', $config);
+                //     if ($this->image_lib->resize()) {
+                //         $this->image_lib->clear();
+               
+                //     }else{
+                //          $errors = array('error' => $this->upload->display_errors('<p class = "bg-danger">', '</p>'));               
+            
+                // // $this->Failed($errors);
+                //     }
+                     
+
+                 }
                 $dta = array('msg'=>count($data['upload_data']) . 'File(s) successfully uploaded.',
             'dta'=>$data
             );
@@ -333,6 +355,21 @@ class Heavenlink extends CI_Controller
 
     }
 
+private function editarFotoMini($src) {
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $src;
+        $config['maintain_ratio'] = TRUE;
+        $config['width'] = 750;
+        $config['height'] = 400;
+
+        $this -> load -> library('image_lib', $config); 
+        var_dump($config);    
+        if(!$this -> image_lib -> resize()){
+            var_dump($this->image_lib->display_errors());
+        }
+        $this->image_lib->clear();
+
+    }
 
     private function Success($data){
             $this->output
