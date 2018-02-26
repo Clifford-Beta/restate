@@ -82,12 +82,12 @@
         <script>
 var data = sessionStorage.getItem('isLogged');
             if(data){
-                window.location.replace("<?php echo base_url('Heavenlink/submit_property');?>");
+                window.location.replace("<?php echo base_url('submit_property');?>");
             }
 
             $( "#logit" ).click(function( event ) {
   event.preventDefault();
-  url = "<?php echo base_url('Heavenlink/dologin'); ?>" ;
+  url = "<?php echo base_url('dologin'); ?>" ;
         // url = "http://localhost/restate/Heavenlink/dologin";
         data = { "email": $('#email').val(), "password": $('#password').val() };
         // data = $("#loginform").serialize()
@@ -105,7 +105,7 @@ var data = sessionStorage.getItem('isLogged');
 });
           $( "#regit" ).click(function( event ) {
   event.preventDefault();
-  url = "<?php echo base_url('Heavenlink/doregister'); ?>" ;
+  url = "<?php echo base_url('doregister'); ?>" ;
         // url = "http://localhost/restate/Heavenlink/dologin";
         data = { "email": $('#email1').val(), "password": $('#password1').val(),"name": $('#name1').val(),"phone": $('#phone1').val() };
         // data = $("#regform").serializeArray()
@@ -129,7 +129,7 @@ function setSess(params) {
     sessionStorage.Email = params.email;
     sessionStorage.isLogged = params.isLogged;
     sessionStorage.Id = params.id;
-    window.location.replace("<?php echo base_url('Heavenlink/submit_property');?>");
+    window.location.replace("<?php echo base_url('submit_property');?>");
     
 }
         </script>

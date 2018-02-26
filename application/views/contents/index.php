@@ -11,7 +11,7 @@
             <div class="slider-content">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                        <h2>Ultimate choice for best housing</h2>
+                        <!--<h2>Best choice for houses and lands</h2>-->
                         <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>-->
                         <!--<div class="search-form wow pulse" data-wow-delay="0.8s">
 
@@ -216,11 +216,11 @@
                                 <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a href="<?php echo base_url('Heavenlink/property/h/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
+                                            <a href="<?php echo base_url('property/h/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="<?php echo base_url('Heavenlink/property/h/').$value['id'];?>"> <?php echo $value['name']; ?> </a></h5>
+                                            <h5><a href="<?php echo base_url('property/h/').$value['id'];?>"> <?php echo $value['name']; ?> </a></h5>
                                             <div class="dot-hr"></div>
                                             <span class="pull-left"><b> Area :</b> <?php echo $value['area'];?>m </span>
                                             <span class="proerty-price pull-right"> Shs. <?php echo $value['price'];?></span>
@@ -441,7 +441,7 @@
                                 <p> Get the best houses at convinient prices</p>                                        
                             </div>
                             <div class="asks-first-arrow">
-                                <a href="<?php echo site_url('Heavenlink/properties');?>"><span class="fa fa-angle-right"></span></a>
+                                <a href="<?php echo base_url('properties');?>"><span class="fa fa-angle-right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -455,7 +455,7 @@
                                 <p> Various houses used or new can be submitted by through the admin.</p>
                             </div>
                             <div class="asks-first-arrow">
-                                <a href="<?php echo site_url('Heavenlink/properties');?>"><span class="fa fa-angle-right"></span></a>
+                                <a href="<?php echo base_url('properties');?>"><span class="fa fa-angle-right"></span></a>
                             </div>
                         </div>
                     </div>

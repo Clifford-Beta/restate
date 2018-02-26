@@ -36,9 +36,9 @@
                             <!-- /.col-sm-4 -->
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-envelope"></i> Electronic support</h3>
-                                <p class="text-muted">Please feel free to write an email to us or to use our electronic ticketing system.</p>
+                                <p class="text-muted">Please feel free to write an email to us.</p>
                                 <ul>
-                                    <li><strong><a href="mailto:">info@heavenlinkproperties.com</a></strong>   </li>
+                                    <li><strong><a href="mailto:">info@inkarealtors.com</a></strong>   </li>
                                 </ul>
                             </div>
                             <!-- /.col-sm-4 -->

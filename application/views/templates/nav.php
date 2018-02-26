@@ -11,7 +11,7 @@
                         <div class="header-half header-call">
                             <p>
                                 <span><i class="pe-7s-call"></i> +254 725 600 051</span>
-                                <span><i class="pe-7s-mail"></i> info@heavenlinkproperties.com</span>
+                                <span><i class="pe-7s-mail"></i> info@inkarealtors.com</span>
                             </p>
                         </div>
                     </div>
@@ -40,33 +40,33 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url('Heavenlink/index');?>"><img src="<?php echo base_url('assets/img/logo.png');?>" alt=""></a>
+                    <a class="navbar-brand" href="<?php echo site_url('/');?>"><img src="<?php echo base_url('assets/img/logo.png');?>" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('<?php echo site_url('Heavenlink/login');?>')" data-wow-delay="0.45s">Login</button>
+                        <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('<?php echo site_url('login');?>')" data-wow-delay="0.45s">Login</button>
                         <button class="navbar-btn nav-button wow fadeInRight" onclick="logout()" class="hidden" data-wow-delay="0.48s" id="lgout">Logout</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo site_url('Heavenlink/index');?>">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo site_url('/');?>">Home</a></li>
                         <li class="dropdown ymm-sw " data-wow-delay="0.1s">
                             <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Property <b class="caret"></b></a>
                             <ul class="dropdown-menu navbar-nav">
                                 <li>
-                                    <a class="" href="<?php echo site_url('Heavenlink/properties');?>">Houses</a>
+                                    <a class="" href="<?php echo site_url('properties');?>">Houses</a>
                                 </li>
                                 <li>
-                                    <a class="" href="<?php echo site_url('Heavenlink/land');?>">Land</a>
+                                    <a class="" href="<?php echo site_url('land');?>">Land</a>
                                 </li>
                                 <li>
-                                    <a class="" href="<?php echo site_url('Heavenlink/submit_property');?>">Submit</a>
+                                    <a class="" href="<?php echo site_url('submit_property');?>">Submit</a>
                                 </li>
                             </ul>
                         </li>
                         <!-- <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="<?php //echo site_url('Heavenlink/property');?>">About Us</a></li> -->
-                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="<?php echo site_url('Heavenlink/contact');?>">Contact Us</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="<?php echo site_url('contact');?>">Contact Us</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -86,7 +86,7 @@
                 }
                 }
                 console.log("logged out!!");
-                window.location.replace("<?php echo base_url('Heavenlink/');?>");
+                window.location.replace("<?php echo base_url('/');?>");
 
             }
         </script>
