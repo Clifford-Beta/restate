@@ -16,7 +16,7 @@
                     <div class="wizard-container"> 
                             
                         <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <?php echo form_open_multipart('Heavenlink/dosubmit_property', array('class' => 'upload-image-form'));?>
+                            <?php echo form_open_multipart('dosubmit_property', array('class' => 'upload-image-form'));?>
                             <!-- <form action="<?php// echo base_url('Heavenlink/dosubmit_property'); ?>" method="POST" id="myform">                         -->
                                 <div class="wizard-header">
                                     <h3>
@@ -71,7 +71,7 @@
                                     <!--  End step 1 -->
 
                                     <div class="tab-pane" id="step2">
-                                        <h4 class="info-text"> How much your Property is Beautiful ? </h4>
+                                        <h4 class="info-text"> HOW BEAUTIFUL IS YOUR PROPERTY? </h4>
                                         <div class="row">
                                             <div class="col-sm-12"> 
                                                 <div class="col-sm-12"> 
@@ -171,7 +171,7 @@
                                     <!-- End step 2 -->
 
                                     <div class="tab-pane" id="step3">                                        
-                                        <h4 class="info-text">Give us somme images</h4>
+                                        <h4 class="info-text">Give us some images</h4>
                                         <div class="row">  
                                             <div class="col-sm-6">
                                                 <div class="form-group">
@@ -206,7 +206,7 @@
                                                 <div class="">
                                                     <p>
                                                         <label><strong>Terms and Conditions</strong></label>
-                                                        By accessing or using  Heavenlink Properties Limited services, such as 
+                                                        By accessing or using  Inkarealtors Properties Limited services, such as 
                                                         posting your property advertisement with your personal 
                                                         information on our website you agree to the
                                                         collection, use and disclosure of your personal information 
@@ -215,7 +215,7 @@
 
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" /> <strong>Accept termes and conditions.</strong>
+                                                            <input type="checkbox" /> <strong>Accept Terms and Conditions.</strong>
                                                         </label>
                                                     </div> 
 
@@ -261,7 +261,7 @@
                 datea.append('file[]', file);
             });
             jQuery.ajax({
-                url: '<?php echo base_url('Heavenlink/do_upload'); ?>',
+                url: '<?php echo base_url('do_upload'); ?>',
                 data: datea,
                 cache: false,
                 contentType: false,
@@ -278,7 +278,7 @@
                     toastr.success(data.msg);
 
                         jQuery.ajax({
-                url: '<?php echo base_url('Heavenlink/dosubmit_property'); ?>',
+                url: '<?php echo base_url('dosubmit_property'); ?>',
                 data: $(".upload-image-form").serialize()+'&image='+JSON.stringify(imgs),
                 cache: false,
                 contentType: false,

@@ -11,10 +11,10 @@
                                 <div class="footer-title-line"></div>
 
                                 <img src="<?php echo base_url('assets/img/footer-logo.png');?>" alt="" class="wow pulse" data-wow-delay="1s">
-                                <p>Heavenlink Properties is located along Ngong Road at Set Green Hill Plaza</p>
+                                <!--<p>Heavenlink Properties is located along Ngong Road at Set Green Hill Plaza</p>-->
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> Kennedy's Plaza Ngong Road</li>
-                                    <li><i class="pe-7s-mail strong"> </i> info@heavenlinkproperties.com</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> Baywater Court,Block B 2<sup>nd</sup> Floor Suite 6</li>
+                                    <li><i class="pe-7s-mail strong"> </i> info@inkarealtors.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +254 725 600 051</li>
                                 </ul>
                             </div>
@@ -24,10 +24,10 @@
                                 <h4>Quick links </h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-menu">
-                                    <li><a href="<?php echo site_url('properties.php');?>">Properties</a>  </li> 
+                                    <li><a href="<?php echo site_url('properties');?>">Properties</a>  </li> 
                                     <li><a href="#">Services</a>  </li> 
-                                    <li><a href="<?php echo site_url('submit-property.php');?>">Submit property </a></li> 
-                                    <li><a href="<?php echo site_url('contact.php');?>">Contact us</a></li> 
+                                    <li><a href="<?php echo site_url('submit_property');?>">Submit property </a></li> 
+                                    <li><a href="<?php echo site_url('contact');?>">Contact us</a></li> 
                                    <!-- <li><a href="<?php //echo site_url('faq.php');?>">FAQ</a>  </li> 
                                     <li><a href="<?php //echo site_url('faq.php');?>">Terms </a>  </li> -->
                                 </ul>
@@ -108,14 +108,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                           Copyright &copy <a href="http://www.kennedys.com"><span style="color: rgb(108,108,108);"> Heavenlink Properties Limited</span></a>  All rights reserved 2018  
+                           Copyright &copy <a href="http://www.inkarealtors.com"><span style="color: rgb(108,108,108);"> INKAREALTORS PROPERTIES LIMITED</span></a>  All rights reserved 2018  
                         </div> 
                         <div class="bottom-menu pull-right"> 
                             <ul> 
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">Home</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s">Property</a></li>
+                                <li><a class="wow fadeInUp animated" href="<?php echo site_url('/');?>" data-wow-delay="0.2s">Home</a></li>
+                                <li><a class="wow fadeInUp animated" href="<?php echo site_url('properties');?>" data-wow-delay="0.3s">Properties</a></li>
                                 <!--<li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s">Faq</a></li>-->
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.6s">Contact</a></li>
+                                <li><a class="wow fadeInUp animated" href="<?php echo site_url('contact');?>#" data-wow-delay="0.6s">Contact</a></li>
                             </ul> 
                         </div>
                     </div>

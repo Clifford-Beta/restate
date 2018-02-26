@@ -12,7 +12,7 @@ class Heavenlink extends CI_Controller
     }
     public function index()
     {
-    	$data['title']='Heavenlink Properties | Home';
+    	$data['title']='Inkarealtors | Home';
        $data['houses']=$this->main_model->get_many_hse(NULL,8);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -21,7 +21,7 @@ class Heavenlink extends CI_Controller
     } 
    public function properties()
     {
-    	$data['title']='Heavenlink Properties | Properties';
+    	$data['title']='Inkarealtors | Properties';
         $data['houses']=$this->main_model->get_many_hse(NULL,NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -30,7 +30,7 @@ class Heavenlink extends CI_Controller
     }
     public function property($type, $id)
     {
-        $data['title']='Heavenlink Properties | Properties';
+        $data['title']='Inkarealtors | Properties';
         if($type=='l'){
             $data['house']=$this->main_model->get_many_lnd(array('land_id'=>$id));
         }else{
@@ -43,7 +43,7 @@ class Heavenlink extends CI_Controller
     }
      public function propertyb()
     {
-        $data['title']='Heavenlink Properties | Properties';
+        $data['title']='Inkarealtors | Properties';
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -52,7 +52,7 @@ class Heavenlink extends CI_Controller
     }
      public function propertiesc()
     {
-        $data['title']='Heavenlink Properties | Properties';
+        $data['title']='Inkarealtors | Properties';
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -61,7 +61,7 @@ class Heavenlink extends CI_Controller
     }
     public function land()
     {
-    	$data['title']='Heavenlink Properties | Land';
+    	$data['title']='Inkarealtors | Land';
         $data['houses']=$this->main_model->get_many_lnd(NULL,NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -105,7 +105,7 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->update("editland",$datea,array('land_id'=>$datea["id"]));
         
         if($res != FALSE){
-            $data['title']='Heavenlink Properties | Submit Property';
+            $data['title']='Inkarealtors | Submit Property';
         $data['error']='';
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -113,7 +113,7 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/footer',$data);
         return;
         }
-        $data['title']='Heavenlink Properties | Submit Property';
+        $data['title']='Inkarealtors | Submit Property';
         $data['error']='Property editing failed';
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -121,7 +121,7 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/footer',$data);
         return;
     }
-    $data['title']='Heavenlink Properties | Submit Property';
+    $data['title']='Inkarealtors | Submit Property';
         $data['error']=validation_errors();
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -166,7 +166,7 @@ class Heavenlink extends CI_Controller
         $res = $this->main_model->update("house",$datea,array('idhouse'=>$datea["id"]));
         
         if($res != FALSE){
-            $data['title']='Heavenlink Properties | Submit Property';
+            $data['title']='Inkarealtors | Submit Property';
         $data['error']='';
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -175,7 +175,7 @@ class Heavenlink extends CI_Controller
         return;
     
         }
-        $data['title']='Heavenlink Properties | Submit Property';
+        $data['title']='Inkarealtors | Submit Property';
         $data['error']= "Adding property failed";
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -183,7 +183,7 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/footer',$data);
         return;
     }
-    $data['title']='Heavenlink Properties | Submit Property';
+    $data['title']='Inkarealtors | Submit Property';
         $data['error']=validation_errors();
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -196,7 +196,7 @@ class Heavenlink extends CI_Controller
 
     public function contact()
     {
-    	$data['title']='Heavenlink Properties | Contact Us';
+    	$data['title']='Inkarealtors | Contact Us';
         
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -205,7 +205,7 @@ class Heavenlink extends CI_Controller
     }
      public function login()
     {
-        $data['title']='Heavenlink Properties | Login';
+        $data['title']='Inkarealtors | Login';
         
 
         $this->load->view('/templates/head',$data);
@@ -234,7 +234,7 @@ class Heavenlink extends CI_Controller
 
      public function register()
     {
-        $data['title']='Heavenlink Properties | Sign Up';
+        $data['title']='Inkarealtors | Sign Up';
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -263,7 +263,7 @@ class Heavenlink extends CI_Controller
     }
     public function submit_property()
     {
-        $data['title']='Heavenlink Properties | Submit Property';
+        $data['title']='Inkarealtors | Submit Property';
         $data['error']='';
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
@@ -363,9 +363,9 @@ private function editarFotoMini($src) {
         $config['height'] = 400;
 
         $this -> load -> library('image_lib', $config); 
-        var_dump($config);    
+        // var_dump($config);    
         if(!$this -> image_lib -> resize()){
-            var_dump($this->image_lib->display_errors());
+            // var_dump($this->image_lib->display_errors());
         }
         $this->image_lib->clear();
 

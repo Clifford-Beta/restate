@@ -52,3 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'heavenlink';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['property/([a-z]+)/(\d+)'] = 'Heavenlink/property/$1/$2';
+
+$route['(:any)'] = "Heavenlink/$0";
+
