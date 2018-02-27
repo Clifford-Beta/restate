@@ -176,7 +176,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label for="property-images">Chose Images :</label>
-                                                    <input class="form-control" type="file"  multiple="multiple" accept="image/*" id="property-images" name="images[]" size="20">
+                                                    <input class="form-control" type="file"  multiple="multiple" accept="image/*" id="property-images" name="images[]" size="10">
                                                     <p class="help-block">Select multiple images for your property .</p>
                                                 </div>
                                             </div>
@@ -218,6 +218,8 @@
                                                             <input type="checkbox" /> <strong>Accept Terms and Conditions.</strong>
                                                         </label>
                                                     </div> 
+                                                                    
+                                                         <div id="loader" style="display:none;  margin:0 auto;" ><img src="<?php echo base_url('assets/img/loading.gif'); ?>" alt="Loading"></div>
 
                                                 </div> 
                                             </div>
@@ -251,6 +253,7 @@
             elem.value = sessionStorage.getItem('Id');
 
         $( "#propertit" ).click(function( event ) {
+            $('#loader').show();
             event.preventDefault();
             var datea = new FormData();
             jQuery.each($('#wizard-picture')[0].files, function(i, file) {
@@ -271,7 +274,7 @@
                 success: function(data){
                     imgs = [];
                     console.log(data.dta.upload_data)
-                        data.dta.upload_data.forEach(element => {
+                        data.dta.forEach(element => {
                            imgs.push(element.file_name); 
                         });
                         console.log(imgs);
@@ -286,12 +289,14 @@
                 method: 'POST',
                 type: 'POST', // For jQuery < 1.9
                 success: function(data){
+                    $('#loader').hide();
                     toastr.success("Property added successfully");
                     //   console.log( $(".upload-image-form").serialize() );
  
                     
                 },
                  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                     $('#loader').hide();
                  toastr.error(errorThrown);
                      }  
                 
@@ -302,6 +307,7 @@
                     
                 },
                  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                     $('#loader').hide();
                  toastr.error(errorThrown);
                      }  
                 

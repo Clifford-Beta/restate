@@ -298,6 +298,7 @@ class Heavenlink extends CI_Controller
         
             $path = './uploads/';
             $this->load->library('upload');
+            // $this->load->library('my_upload');
             
             /**
              * Refer to https://ellislab.com/codeigniter/user-guide/libraries/file_uploading.html 
@@ -313,45 +314,43 @@ class Heavenlink extends CI_Controller
                 "max_width"         =>  '10240',
                 "max_height"        =>  '7680'
             ));
-            if($this->upload->do_multi_upload("file") ){
-                
-                $data['upload_data'] = $this->upload->get_multi_upload_data();
-                // var_dump($data['upload_data']);
-                 //Returns array of containing all of the data related to the file you uploaded.
-                 //loop throuth uploaded files and resize them
-                 foreach($data['upload_data'] as $key => $value){
-                    //  var_dump($key);
-                    $this->editarFotoMini($value['full_path']);
-                    //  var_dump($value['full_path']);
-                //      $config['image_library'] = 'gd2';
-                //     $config['source_image'] = $value['full_path']; //get original image
-                //     $config['maintain_ratio'] = TRUE;
-                //     $config['width'] = 750;
-                //     $config['height'] = 400;
-                //     $this->load->library('image_lib', $config);
-                //     if ($this->image_lib->resize()) {
-                //         $this->image_lib->clear();
-               
-                //     }else{
-                //          $errors = array('error' => $this->upload->display_errors('<p class = "bg-danger">', '</p>'));               
-            
-                // // $this->Failed($errors);
-                //     }
-                     
 
-                 }
-                $dta = array('msg'=>count($data['upload_data']) . 'File(s) successfully uploaded.',
-            'dta'=>$data
+            $uploadData = array();
+            $filesCount = count($_FILES['file']['name']);
+            for($i = 0; $i < $filesCount; $i++){
+                $_FILES['userFile']['name'] = $_FILES['file']['name'][$i];
+                $_FILES['userFile']['type'] = $_FILES['file']['type'][$i];
+                $_FILES['userFile']['tmp_name'] = $_FILES['file']['tmp_name'][$i];
+                $_FILES['userFile']['error'] = $_FILES['file']['error'][$i];
+                $_FILES['userFile']['size'] = $_FILES['file']['size'][$i];
+
+                $uploadPath = 'uploads/';
+                $config['upload_path'] = $uploadPath;
+                $config['allowed_types'] = 'gif|jpg|png';
+                
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                if($this->upload->do_upload('userFile')){
+                    $fileData = $this->upload->data();
+                    $uploadData[$i]['file_name'] = $fileData['file_name'];
+                    $uploadData[$i]['created'] = date("Y-m-d H:i:s");
+                    $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
+                    $this->editarFotoMini($fileData['full_path']);
+                    array_push($uploadData,$fileData);
+
+                }
+            }
+            if(!empty($uploadData)){
+                $dta = array('msg'=>count($uploadData) . 'File(s) successfully uploaded.',
+            'dta'=>$uploadData
             );
                 $this->Success($dta);
-                
-            } else {    
-                // Output the errors
-                $errors = array('error' => $this->upload->display_errors('<p class = "bg-danger">', '</p>'));               
+            }
+            $errors = array('error' => "File upload failed");               
             
                 $this->Failed($errors);
-                
-            }
+
+            
 
     }
 
