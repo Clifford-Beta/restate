@@ -8,7 +8,8 @@ class Heavenlink extends CI_Controller
 	 function __construct()
     {
     	parent::__construct();
-    	$this->load->helper('url');
+        $this->load->helper('url');
+        $this->output->cache(1);
     }
     public function index()
     {
@@ -362,7 +363,8 @@ private function editarFotoMini($src) {
         $config['height'] = 400;
 
         $this -> load -> library('image_lib', $config); 
-        // var_dump($config);    
+        // var_dump($config);
+        // echo json_encode($config);    
         if(!$this -> image_lib -> resize()){
             // var_dump($this->image_lib->display_errors());
         }

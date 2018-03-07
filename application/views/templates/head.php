@@ -13,7 +13,7 @@
         <meta name="keyword" content="html5, css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="<?php echo base_url('http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800');?>" rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800" rel='stylesheet' type='text/css'>
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="shortcut icon" href="<?php echo base_url('favicon.ico');?>" type="image/x-icon">
@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/bootstrap-select.min.css');?>"> 
         <link rel="stylesheet" href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>">
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/icheck.min_all.css');?>">
-        <link rel="stylesheet" href="<?php echo base_url('/assets/css/price-range.css');?>">
+        <link rel="stylesheet" href="<?php //echo base_url('/assets/css/price-range.css');?>">
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/owl.carousel.css');?>">  
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/owl.theme.css');?>">
         <link rel="stylesheet" href="<?php echo base_url('/assets/css/owl.transitions.css');?>">

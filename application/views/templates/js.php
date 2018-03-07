@@ -7,7 +7,7 @@
         <script src="<?php echo base_url('/assets/js/bootstrap-hover-dropdown.js');?>"></script>
 
         <script src="<?php echo base_url('/assets/js/easypiechart.min.js');?>"></script>
-        <script src="<?php echo base_url('/asrsets/js/jquery.easypiechart.min.js');?>"></script>
+        <!-- <script src="<?php // echo base_url('/asrsets/js/jquery.easypiechart.min.js');?>"></script> -->
 
         <script src="<?php echo base_url('/assets/js/owl.carousel.min.js');?>"></script>
         <script src="<?php echo base_url('/assets/js/wow.js');?>"></script>
