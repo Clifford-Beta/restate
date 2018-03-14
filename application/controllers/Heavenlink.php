@@ -9,7 +9,7 @@ class Heavenlink extends CI_Controller
     {
     	parent::__construct();
         $this->load->helper('url');
-        $this->output->cache(1);
+        // $this->output->cache(1);
     }
     public function index()
     {
@@ -262,6 +262,14 @@ class Heavenlink extends CI_Controller
    $this->ValidationFailed(validation_errors());
         
     }
+
+    public function create_profile()
+    {
+        $data = array();
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        parse_str($stream_clean, $data);
+
+    }
     public function submit_property()
     {
         $data['title']='Inkarealtors | Submit Property';
@@ -306,7 +314,8 @@ class Heavenlink extends CI_Controller
              * for full argument documentation.
              *
              */
-             
+
+
             // Define file rules
             $this->upload->initialize(array(
                 "upload_path"       =>  $path,
@@ -399,6 +408,15 @@ private function Failed($data){
         ->_display();
         exit;
 }
+// function GenerateRandomString($length = 10) {
+//        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//        $charactersLength = strlen($characters);
+//        $randomString = '';
+//        for ($i = 0; $i < $length; $i++) {
+//            $randomString .= $characters[rand(0, $charactersLength - 1)];
+//        }
+//        return $randomString;
+//    }
 
 }
 
