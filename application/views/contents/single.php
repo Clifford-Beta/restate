@@ -195,11 +195,11 @@
 
                                         <div class="clear">
                                             <ul class="dealer-contacts">                                       
-                                                <li><i class="pe-7s-map-marker strong"> </i> Baywater Court, Block B 2nd Floor Suite 6</li>
-                                                <li><i class="pe-7s-mail strong"> </i> info@heavenlinkproperties.co.ke</li>
-                                                <li><i class="pe-7s-call strong"> </i> +254 725 600 051</li>
+                                                <li><i class="pe-7s-map-marker strong"> </i>Karen Professional Center Along Karen Road Second Floor Room F6 </li>
+                                                <li><i class="pe-7s-mail strong"> </i> info@heavenlinkproperties.com</li>
+                                                <li><i class="pe-7s-call strong"> </i>+254 700 095 967</li>
                                             </ul>
-                                            <p> Yusuf Manduku is the C.E.O of Heavenlink Properties Limited which deals with real estate</p>
+                                            <p> Yusuf Manduku is the C.E.O of Inkarealtors Properties Limited dealing with letting houses and commercial space, selling houses and lands</p>
                                         </div>
 
                                     </div>
@@ -226,22 +226,20 @@
 
                                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City">
 
-                                                        <option>New york, CA</option>
-                                                        <option>Paris</option>
-                                                        <option>Casablanca</option>
-                                                        <option>Tokyo</option>
-                                                        <option>Marraekch</option>
-                                                        <option>kyoto , shibua</option>
+                                                         <option>Karen</option>
+                                                         <option>Kileleleshwa</option>
+                                                         <option>CBD</option>
+                                                         <option>Ngong</option>
+                                                         <option>Kiserian</option>
+                                                         <option>Runda</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-xs-6">
 
                                                     <select id="basic" class="selectpicker show-tick form-control">
-                                                        <option> -Status- </option>
-                                                        <option>Rent </option>
-                                                        <option>Boy</option>
-                                                        <option>used</option>  
-
+                                                        <option> Status </option>
+                                                        <option>Buy </option>
+                                                        <option>Let</option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -19,11 +19,11 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-map-marker"></i> Address</h3>
-                                <p>Baywater Court
-                                    <br>Block B
-                                    <br>Second Floor Suite 6
-                                    <br>P.O BOX 12163-00100 Nairobi
-                                    <br>
+                                <p>Karen Professional Center
+                                    <br>Along Karen Road
+                                    <br>Second Floor Room F6
+                                    <br>P.O BOX 5941-00100
+                                    <br> Nairobi. 
                                     <strong>Kenya</strong>
                                 </p>
                             </div>
@@ -31,11 +31,11 @@
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-phone"></i> Call center</h3>
                                 <p class="text-muted"></p>
-                                <p><strong>+254 725 600 051</strong></p>
+                                <p><strong>+254 700 095 967</strong></p>
                             </div>
                             <!-- /.col-sm-4 -->
                             <div class="col-sm-4">
-                                <h3><i class="fa fa-envelope"></i> Electronic support</h3>
+                                <h3><i class="fa fa-envelope"></i> Email Support</h3>
                                 <p class="text-muted">Please feel free to write an email to us.</p>
                                 <ul>
                                     <li><strong><a href="mailto:">info@inkarealtors.com</a></strong>   </li>

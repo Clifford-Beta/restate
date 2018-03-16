@@ -9,7 +9,8 @@ class Heavenlink extends CI_Controller
     {
     	parent::__construct();
         $this->load->helper('url');
-        // $this->output->cache(1);
+        $this->output->cache(0);
+
     }
     public function index()
     {
@@ -34,9 +35,11 @@ class Heavenlink extends CI_Controller
         $data['title']='Inkarealtors | Properties';
         if($type=='l'){
             $data['house']=$this->main_model->get_many_lnd(array('land_id'=>$id));
+        }else if($type=='s'){
+           $data['house']=$this->main_model->get_many_spc(array('idspace'=>$id));
         }else{
-           $data['house']=$this->main_model->get_many_hse(array('idhouse'=>$id)); 
-        }        
+        $data['house']=$this->main_model->get_many_hse(array('idhouse'=>$id));
+    }
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/single',$data);
@@ -51,14 +54,57 @@ class Heavenlink extends CI_Controller
         $this->load->view('/contents/propertyb');
         $this->load->view('/templates/footer',$data);
     }
+
      public function propertiesc()
     {
         $data['title']='Inkarealtors | Properties';
 
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/propertyc');
+        $this->load->view('/contents/propertiesc');
         $this->load->view('/templates/footer',$data);
+    }
+    public function profile()
+    {
+        $data['title']='Inkarealtors | Profile';
+
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/profile');
+        $this->load->view('/templates/footer',$data);
+        $this->load->view('/contents/form_validation');
+    }
+
+    public function profiler()
+    {
+        $data = array();
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        parse_str($stream_clean, $data);
+        $datea = array();
+        $datea['username'] = $data['firstname'].' '.$data['lastname'];
+        $datea['phone'] = $data['phone'];
+        $datea['profile'] = $data['image'];
+        if(!empty($data['password'])){
+            $datea['password'] =sha1($data['password']);
+        }
+        $res = $this->main_model->update("user",$datea,array('email'=>$data["email"]));
+        if($res != FALSE){
+            $this->Success("Update successful");
+        }
+        $this->Failed("Failed to  update user");
+    }
+
+
+    public function user_properties()
+      {
+        $data['title']='Inkarealtors | User Property';
+          $data['houses']=$this->main_model->get_many_hse(array('house_owner'=>1),NULL);
+          $data['lands']=$this->main_model->get_many_lnd(array('land_owner'=>1),NULL);
+          $data['spaces']=$this->main_model->get_many_spc(array('space_owner'=>1),NULL);
+          $this->load->view('/templates/head',$data);
+          $this->load->view('/templates/nav',$data);
+          $this->load->view('/contents/user_properties',$data);
+          $this->load->view('/templates/footer',$data);
     }
     public function land()
     {
@@ -82,6 +128,7 @@ class Heavenlink extends CI_Controller
         foreach ($data as $key => $value){
                 $datea['land_'.$key] = $value;
         }
+        $datea['status'] = 1;
         $res = $this->main_model->insert("land",$datea,'land_id');
         
         if($res != FALSE){
@@ -92,44 +139,51 @@ class Heavenlink extends CI_Controller
        $this->ValidationFailed(validation_errors());
     
     }
-
-    public function editland(){
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        $data = json_decode($stream_clean,true);
-        
+    private function addspace($data){
+        // $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        // $data = json_decode($stream_clean,true);
+//            var_dump("Am here");
         $this->form_validation->set_data($data);
-    if($this->form_validation->run('land')!=false){
-        $datea = array();
-        foreach ($data as $key => $value){
-                $datea['land_'.$key] = $value;
+        if($this->form_validation->run('space')!=false){
+            $datea = array();
+            foreach ($data as $key => $value){
+                $datea['space_'.$key] = $value;
+            }
+            $datea['status'] = 1;
+            $res = $this->main_model->insert("space",$datea,'idspace');
+
+            if($res != FALSE){
+                $this->Success("Done");
+            }
+            $this->Failed("Failed to add commercial space");
         }
-        $res = $this->main_model->update("editland",$datea,array('land_id'=>$datea["id"]));
-        
-        if($res != FALSE){
-            $data['title']='Inkarealtors | Submit Property';
-        $data['error']='';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
+        $this->ValidationFailed(validation_errors());
+
+    }
+
+    public function editland($data){
+        $this->form_validation->set_data($data);
+        if($this->form_validation->run('editland')!=false){
+            $datea = array();
+            foreach ($data as $key => $value){
+                if(!empty($value) && $value != ""){
+                    $datea['land_'.$key] = $value;
+                }
+
+            }
+            $res = $this->main_model->update("land",$datea,array('land_id'=>$datea["id"]));
+
+
+            if($res != FALSE){
+                $this->Success("Done");
+            }
+            $this->Failed("Failed to edit land");
         }
-        $data['title']='Inkarealtors | Submit Property';
-        $data['error']='Property editing failed';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
+//        echo "validation failed";
+        $this->ValidationFailed(validation_errors());
+
     }
-    $data['title']='Inkarealtors | Submit Property';
-        $data['error']=validation_errors();
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
-    }
+
 
     
 
@@ -141,8 +195,10 @@ class Heavenlink extends CI_Controller
     if($this->form_validation->run('house')!=false){
         $datea = array();
         foreach ($data as $key => $value){
+
                 $datea['house_'.$key] = $value;
         }
+        $datea['status'] = 1;
         $res = $this->main_model->insert("house",$datea,'idhouse');
         
         if($res != FALSE){
@@ -154,44 +210,48 @@ class Heavenlink extends CI_Controller
        $this->ValidationFailed(validation_errors());
     }
 
-    public function edithouse(){
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        $data = json_decode($stream_clean,true);
-        
+    public function edithouse($data){
         $this->form_validation->set_data($data);
-    if($this->form_validation->run('house')!=false){
-        $datea = array();
-        foreach ($data as $key => $value){
-                $datea['house_'.$key] = $value;
+        if($this->form_validation->run('edithouse')!=false){
+            $datea = array();
+            foreach ($data as $key => $value){
+                if(!empty($value) && $value != ""){
+                    $datea['house_'.$key] = $value;
+                }
+
+            }
+            $res = $this->main_model->update("house",$datea,array('idhouse'=>$datea["id"]));
+
+
+            if($res != FALSE){
+                $this->Success("Done");
+            }
+            $this->Failed("Failed to edit house");
         }
-        $res = $this->main_model->update("house",$datea,array('idhouse'=>$datea["id"]));
-        
-        if($res != FALSE){
-            $data['title']='Inkarealtors | Submit Property';
-        $data['error']='';
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
-    
-        }
-        $data['title']='Inkarealtors | Submit Property';
-        $data['error']= "Adding property failed";
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
+        $this->ValidationFailed(validation_errors());
+
     }
-    $data['title']='Inkarealtors | Submit Property';
-        $data['error']=validation_errors();
-        $this->load->view('/templates/head',$data);
-        $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
-        $this->load->view('/templates/footer',$data);
-        return;
-    
+
+    public function editspace($data){
+        $this->form_validation->set_data($data);
+        if($this->form_validation->run('editspace')!=false){
+            $datea = array();
+            foreach ($data as $key => $value){
+                if(!empty($value) && $value != ""){
+                    $datea['space_'.$key] = $value;
+                }
+
+            }
+            $res = $this->main_model->update("space",$datea,array('idspace'=>$datea["id"]));
+
+
+            if($res != FALSE){
+                $this->Success("Done");
+            }
+            $this->Failed("Failed to edit space");
+        }
+        $this->ValidationFailed(validation_errors());
+
     }
 
 
@@ -262,14 +322,6 @@ class Heavenlink extends CI_Controller
    $this->ValidationFailed(validation_errors());
         
     }
-
-    public function create_profile()
-    {
-        $data = array();
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        parse_str($stream_clean, $data);
-
-    }
     public function submit_property()
     {
         $data['title']='Inkarealtors | Submit Property';
@@ -277,6 +329,29 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/submit-property');
+        $this->load->view('/templates/footer',$data);
+    }
+
+    public function edit_property($type,$id)
+    {
+        $data['title']='Inkarealtors | Edit Property';
+        $data['error']='';
+        $data['id'] = $id;
+        if($type=='l'){
+                 $data['prop']=$this->main_model->get_many_lnd(array('land_id'=>$id))[0];
+            $data['prop']['type']=$type;
+             }else if($type=='s'){
+                 $data['prop']=$this->main_model->get_many_spc(array('idspace'=>$id))[0];
+            $data['prop']['type']=$type;
+             }else{
+
+                 $data['prop']=$this->main_model->get_many_hse(array('idhouse'=>$id))[0];
+            $data['prop']['type']='h';
+             }
+
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/edit-property',$data);
         $this->load->view('/templates/footer',$data);
     }
     public function dosubmit_property()
@@ -292,12 +367,62 @@ class Heavenlink extends CI_Controller
              unset($data['bedroom']);
             unset($data['status']);
             $this->addland($data);
-        }else{
+        }else if(strtolower($data['type'])=='space'){
+            unset($data['type']);
+            unset($data['bath']);
+            unset($data['bedroom']);
+            unset($data['status']);
+            $this->addspace($data);
+        }
+        else{
             unset($data['type']);
             // unset($data['lr']);
             $this->addhouse($data);
         }
     }
+//    public function editor(){
+//        $data['title']='Inkarealtors | Edit Property';
+//        echo json_encode($data);
+//    }
+    public function doedit_property()
+    {
+
+        $data = array();
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        parse_str($stream_clean, $data);
+        var_dump($data);
+        if(strtolower($data['type'])=='land'){
+            unset($data['type']);
+            $data['lr']=$data['name'];
+            unset($data['name']);
+            unset($data['bath']);
+            unset($data['bedroom']);
+            unset($data['status']);
+            $this->editland($data);
+        }else if(strtolower($data['type'])=='space'){
+            unset($data['type']);
+            unset($data['bath']);
+            unset($data['bedroom']);
+            unset($data['status']);
+            $this->editspace($data);
+        }
+        else{
+            unset($data['type']);
+            // unset($data['lr']);
+            $this->edithouse($data);
+        }
+    }
+
+    public function populate_search()
+    {
+        $sgs = $this->main_model->suggestions();
+        if($sgs != NULL){
+            echo json_encode($sgs);
+        }else{
+            $this->Failed("No data found");
+        }
+    }
+
 
     public function do_upload(){
     
@@ -314,8 +439,7 @@ class Heavenlink extends CI_Controller
              * for full argument documentation.
              *
              */
-
-
+             
             // Define file rules
             $this->upload->initialize(array(
                 "upload_path"       =>  $path,
@@ -404,19 +528,10 @@ private function Failed($data){
      $this->output
         ->set_status_header(403)
         ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode(FALSE, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+        ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
         ->_display();
         exit;
 }
-// function GenerateRandomString($length = 10) {
-//        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-//        $charactersLength = strlen($characters);
-//        $randomString = '';
-//        for ($i = 0; $i < $length; $i++) {
-//            $randomString .= $characters[rand(0, $charactersLength - 1)];
-//        }
-//        return $randomString;
-//    }
 
 }
 

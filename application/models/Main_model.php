@@ -48,6 +48,21 @@ function insert($table,$form_data,$pk_name = NULL){
 			}
 			else return False;
 		}
+
+    function suggestions(){
+
+        $query = $this->db->query('select idhouse as id ,house_name as name, house_location as location, 
+                                    house_status as status from house
+                                    union
+                                    select land_id as id ,land_lr as name, 
+                                    land_location as location, land_description as status from land ');
+
+        if ($query->num_rows()>0){
+            return $query->result();
+        }
+        else {return NULL;}
+
+    }
 	function update($table_name,$update_data,$check){
 		// update values in any table
 
@@ -81,10 +96,10 @@ function insert($table,$form_data,$pk_name = NULL){
 		//select a particular field from a table based on status
 		$this->db->select('idhouse as id, house_name as name, house_location as location, house_description as description,
 		house_area as area, house_price as price, house_bedroom as bedroom, house_bath as bathroom, 
-		house_garage as garage, house_image as image, house_status as status, user.username as owner, user.email as email')->from('house')->join('user','user.id = house_owner');
+		house_garage as garage, house_image as image, house_status as status, user.username as owner, user.email as email, house.status as active')->from('house')->join('user','user.id = house_owner');
 		if($rule != NULL){$this->db->where($rule);}
 		if($limit != NULL){$this->db->limit($limit);}
-		// $this->db->where('status',1);
+//		 $this->db->where('status',1);
 		$this->db->order_by('house.create_time', 'DESC');
 		$query = $this->db->get();
 		if ($query->num_rows()>0){
@@ -96,7 +111,7 @@ function insert($table,$form_data,$pk_name = NULL){
 		function get_many_lnd($rule=NULL, $limit=NULL){
 		//select a particular field from a table based on status
 		$this->db->select('land_id as id,land_lr as name,  land_location as location, land_description as description,
-		land_area as area, land_price as price, land_image as image, user.username as owner, user.email as email')->from('land')->join('user','user.id = land_owner');
+		land_area as area, land_price as price, land_image as image, user.username as owner, user.email as email,land.status as active')->from('land')->join('user','user.id = land_owner');
 		if($rule != NULL){$this->db->where($rule);}
 		if($limit != NULL){$this->db->limit($limit);}
 		// $this->db->where('status',1);
@@ -108,7 +123,20 @@ function insert($table,$form_data,$pk_name = NULL){
 		else {return NULL;}
 		}
 
-
+    function get_many_spc($rule=NULL, $limit=NULL){
+        //select a particular field from a table based on status
+        $this->db->select('idspace as id,space_name as name,  space_location as location, space_description as description,
+		space_area as area, space_price as price, space_image as image, user.username as owner, user.email as email, space.status as active')->from('space')->join('user','user.id = space_owner');
+        if($rule != NULL){$this->db->where($rule);}
+        if($limit != NULL){$this->db->limit($limit);}
+        // $this->db->where('status',1);
+        $this->db->order_by('space.create_time', 'DESC');
+        $query = $this->db->get();
+        if ($query->num_rows()>0){
+            return $query->result_array();
+        }
+        else {return NULL;}
+    }
 
 
 

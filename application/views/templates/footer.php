@@ -13,9 +13,9 @@
                                 <img src="<?php echo base_url('assets/img/footer-logo.png');?>" alt="" class="wow pulse" data-wow-delay="1s">
                                 <!--<p>Heavenlink Properties is located along Ngong Road at Set Green Hill Plaza</p>-->
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> Baywater Court,Block B 2<sup>nd</sup> Floor Suite 6</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> Karen Professional Center Along Karen Road Second Floor Room F6 </li>
                                     <li><i class="pe-7s-mail strong"> </i> info@inkarealtors.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> +254 725 600 051</li>
+                                    <li><i class="pe-7s-call strong"> </i>  +254 700 095 967</li>
                                 </ul>
                             </div>
                         </div>

@@ -2,13 +2,12 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Submit new property</h1>               
+                        <h1 class="page-title">Edit property</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
-
         <!-- property area -->
         <div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
             <div class="container">
@@ -16,11 +15,11 @@
                     <div class="wizard-container"> 
                             
                         <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <?php echo form_open_multipart('dosubmit_property', array('class' => 'upload-image-form'));?>
-                            <!-- <form action="<?php// echo base_url('Heavenlink/dosubmit_property'); ?>" method="POST" id="myform">                         -->
+                            <?php echo form_open_multipart('doedit_property', array('class' => 'upload-image-form'));?>
+                            <!-- <form action="<?php// echo base_url('Heavenlink/doedit_property'); ?>" method="POST" id="myform">                         -->
                                 <div class="wizard-header">
                                     <h3>
-                                        <b>Submit</b> YOUR PROPERTY <br>
+                                        <b>Edit</b> YOUR PROPERTY <br>
                                         <small>Making it Simple</small>
                                     </h3>
                                 </div>
@@ -50,16 +49,16 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Property name <small>(required)</small></label>
-                                                    <input name="name" type="text" class="form-control" placeholder="Enter property name ...">
+                                                    <input name="name" type="text" class="form-control" value="<?php if(isset($prop['name'])){echo $prop['name'];} ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Property Location <small>(required)</small></label>
-                                                    <input name="location" type="text" class="form-control" placeholder="Enter Location">
+                                                    <input name="location" type="text" class="form-control" value="<?php if(isset($prop['location'])){echo $prop['location'];} ?>">
                                                 </div> 
                                                 <div class="form-group">
                                                     <label>Property price <small>(required)</small></label>
-                                                    <input name="price" type="text" class="form-control" placeholder="Shs.">
+                                                            <input name="price" type="text" class="form-control" value="<?php if(isset($prop['price'])){echo $prop['price'];} ?>">
                                                 </div> 
                                                 <!-- <div class="form-group">
                                                     <label>Telephone <small>(empty if you wanna use default phone number)</small></label>
@@ -77,44 +76,43 @@
                                                 <div class="col-sm-12"> 
                                                     <div class="form-group">
                                                         <label>Property Description :</label>
-                                                        <textarea name="description" class="form-control" ></textarea>
+                                                        <textarea name="description" class="form-control" ><?php if(isset($prop['description'])){echo $prop['description'];} ?></textarea>
                                                     </div> 
                                                 </div> 
                                             </div>
 
                                             <div class="col-sm-12">
-                                                
-                                                <!-- <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Property City :</label>
-                                                        <select id="lunchBegins" name="city" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
-                                                            <option>New york, CA</option>
-                                                            <option>Paris</option>
-                                                            <option>Casablanca</option>
-                                                            <option>Tokyo</option>
-                                                            <option>Marraekch</option>
-                                                            <option>kyoto , shibua</option>
-                                                        </select>
-                                                    </div>
-                                                </div> -->
+
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label>Property Status  :</label>
-                                                        <select id="basic" name="status" class="selectpicker show-tick form-control">
-                                                            <option>Status</option>
-                                                            <option>Rent </option>
-                                                            <option>Buy</option> 
+                                                        <select id="basic" name="status"  class="selectpicker show-tick form-control">
+                                                            <?php if(isset($prop['status'])){
+                                                                if($prop['status']=="Rent"){?>
+                                                                    <option selected="selected">Rent </option>
+                                                                <?php }else{?>
+                                                                    <option selected="selected">Buy</option>
+
+                                                                <?php  }} ?>
+
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label>Property Type  :</label>
-                                                        <select id="basic" name="type" class="selectpicker show-tick form-control">
-                                                            <option value="house">House</option>
-                                                            <option value="land">Land </option>
-                                                            <option value="space">Commercial Space</option>
-                                                            
+                                                        <select id="basic" name="type"  class="selectpicker show-tick form-control">
+                                                            <?php if(isset($prop['type'])){
+                                                                if($prop['type']=="l"){?>
+                                                                    <option selected="selected">Land </option>
+                                                                <?php }else if($prop['type']=='h'){?>
+                                                                    <option selected="selected">House</option>
+
+                                                                <?php  }else{ ?>
+                                                                    <option selected="selected" value="space">Commercial Space</option>
+                                                                <?}} ?>
+
+
 
                                                         </select>
                                                     </div>
@@ -122,7 +120,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label>Owner  :</label>
-                                                        <select id="basic" name="owner" class="selectpicker show-tick form-control">
+                                                        <select id="basic" name="owner" class="selectpicker show-tick form-control" value="<?php if(isset($prop['owner'])){echo $prop['owner'];} ?>">
                                                             <option value='1'>Default</option>
                                                             <option value='' id="here">Me </option>
                                                         </select>
@@ -135,7 +133,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="property-geo">Bedrooms :</label>
-                                                        <input type="number" name="bedroom" class="form-control"  ><br />
+                                                        <input type="number" name="bedroom" class="form-control"  value="<?php if(isset($prop['bedroom'])){echo $prop['bedroom'];} ?>"><br />
                                                         
                                                     </div>
                                                 </div>
@@ -143,7 +141,7 @@
 
                                                     <div class="form-group">
                                                         <label for="price-range">Bathrooms</label>
-                                                        <input name="bath" type="number" class="form-control"  ><br />
+                                                        <input name="bath" type="number" class="form-control" value="<?php if(isset($prop['bathroom'])){echo $prop['bathroom'];} ?>" ><br />
                                                         
                                                     </div>
                                                 </div>
@@ -151,7 +149,7 @@
 
                                                     <div class="form-group">
                                                         <label for="property-geo">Property geo (m2) :</label>
-                                                        <input type="number" class="form-control"  name="area"  ><br />
+                                                        <input type="number" class="form-control"  name="area" value="<?php if(isset($prop['area'])){echo $prop['area'];} ?>" ><br />
                                                         
                                                     </div>
                                                 </div>   
@@ -217,7 +215,7 @@
                                 <div class="wizard-footer">
                                     <div class="pull-right">
                                         <input type='button' class='btn btn-next btn-primary' name='next' value='Next' />
-                                        <input type='submit' id="propertit" class='btn btn-finish btn-primary ' name='finish' value='Finish' />
+                                        <input type='button' id="propert" class='btn btn-finish btn-primary ' name='finish' value='Finish' />
                                     </div>
 
                                     <div class="pull-left">
@@ -237,7 +235,9 @@
          var elem = document.getElementById('here');
             elem.value = sessionStorage.getItem('Id');
 
-        $( "#propertit" ).click(function( event ) {
+        $( "#propert" ).click(function( event ) {
+            // alert("i've been clicked");
+
             $('#loader').show();
             event.preventDefault();
             var datea = new FormData();
@@ -248,6 +248,7 @@
             jQuery.each(jQuery('#property-images')[0].files, function(i, file) {
                 datea.append('file[]', file);
             });
+            var imgs = [];
             jQuery.ajax({
                 url: '<?php echo base_url('do_upload'); ?>',
                 data: datea,
@@ -256,47 +257,50 @@
                 processData: false,
                 method: 'POST',
                 type: 'POST', // For jQuery < 1.9
-                success: function(data){
-                    imgs = [];
+                success: function (data) {
+
                     console.log(data.dta.upload_data)
-                        data.dta.forEach(element => {
-                           imgs.push(element.file_name); 
-                        });
-                        console.log(imgs);
+                    data.dta.forEach(element => {
+                        imgs.push(element.file_name);
+                })
+                    ;
+                    console.log(imgs);
                     toastr.success(data.msg);
-
-                        jQuery.ajax({
-                url: '<?php echo base_url('dosubmit_property'); ?>',
-                data: $(".upload-image-form").serialize()+'&image='+JSON.stringify(imgs),
-                cache: false,
-                contentType: false,
-                processData: false,
-                method: 'POST',
-                type: 'POST', // For jQuery < 1.9
-                success: function(data){
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
                     $('#loader').hide();
-                    toastr.success("Property added successfully");
-                    //   console.log( $(".upload-image-form").serialize() );
- 
-                    
-                },
-                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                     $('#loader').hide();
-                 toastr.error(errorThrown);
-                     }  
-                
+                    toastr.error(errorThrown);
+                }
             });
+
+                jQuery.ajax({
+                    url: '<?php echo base_url('doedit_property'); ?>',
+                    data: $(".upload-image-form").serialize() + '&image=' + JSON.stringify(imgs)+'&id='+parseInt('<?php echo $id; ?>') ,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    method: 'POST',
+                    type: 'POST', // For jQuery < 1.9
+                    success: function (data) {
+                        $('#loader').hide();
+                        toastr.success("Property edited successfully");
+                        //   console.log( $(".upload-image-form").serialize() );
+
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $('#loader').hide();
+                        // console.log(XMLHttpRequest,textStatus,errorThrown)
+                        toastr.error(errorThrown);
+                    }
+
+                });
 
                     //   console.log( $(".upload-image-form").serialize() );
  
                     
-                },
-                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                     $('#loader').hide();
-                 toastr.error(errorThrown);
-                     }  
+
                 
-            });
 
     });
 

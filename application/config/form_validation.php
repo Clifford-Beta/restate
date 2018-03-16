@@ -28,8 +28,45 @@ $config = array(
                         'field' => 'owner',
                         'label' => 'owner',
                         'rules' => 'trim|required|numeric'
-                )
+                ),
+            array(
+                'field' => 'lr',
+                'label' => 'lr',
+                'rules' => 'trim|required'
+            )
         ),
+    'space' => array(
+        array(
+            'field' => 'location',
+            'label' => 'location',
+            'rules' => 'trim|required'
+        ),
+        array(
+            'field' => 'area',
+            'label' => 'area',
+            'rules' => 'trim|required'
+        ),
+        array(
+            'field' => 'price',
+            'label' => 'price',
+            'rules' => 'required|trim'
+        ),
+        array(
+            'field' => 'description',
+            'label' => 'description',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'owner',
+            'label' => 'owner',
+            'rules' => 'trim|required|numeric'
+        ),
+        array(
+            'field' => 'name',
+            'label' => 'name',
+            'rules' => 'trim|required'
+        )
+    ),
         'editland' => array(
                 array(
                         'field' => 'location',
@@ -132,6 +169,43 @@ $config = array(
                         'rules' => 'trim|numeric|required'
                 )
         ),
+    'editspace' => array(
+        array(
+            'field' => 'location',
+            'label' => 'location',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'area',
+            'label' => 'area',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'price',
+            'label' => 'price',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'description',
+            'label' => 'description',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'owner',
+            'label' => 'owner',
+            'rules' => 'trim|numeric'
+        ),
+        array(
+            'field' => 'name',
+            'label' => 'name',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'id',
+            'label' => 'id',
+            'rules' => 'trim|numeric|required'
+        )
+    ),
         'register' => array(
                 array(
                         'field' => 'name',

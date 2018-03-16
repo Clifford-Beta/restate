@@ -10,7 +10,7 @@
                     <div class="col-md-5 col-sm-8  col-xs-12">
                         <div class="header-half header-call">
                             <p>
-                                <span><i class="pe-7s-call"></i> +254 725 600 051</span>
+                                <span><i class="pe-7s-call"></i> +254 700 095 967</span>
                                 <span><i class="pe-7s-mail"></i> info@inkarealtors.com</span>
                             </p>
                         </div>
@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url('/');?>"><img src="<?php echo base_url('assets/img/logo.png');?>" alt=""></a>
+                    <a class="navbar-brand" href="<?php echo site_url('/');?>"><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Inkarealtors"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,16 +52,24 @@
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo site_url('/');?>">Home</a></li>
                         <li class="dropdown ymm-sw " data-wow-delay="0.1s">
-                            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Property <b class="caret"></b></a>
+                            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Buy Property<b class="caret"></b></a>
                             <ul class="dropdown-menu navbar-nav">
                                 <li>
-                                    <a class="" href="<?php echo site_url('properties');?>">Houses</a>
+                                    <a class="" href="<?php echo site_url('properties');?>">House</a>
                                 </li>
                                 <li>
                                     <a class="" href="<?php echo site_url('land');?>">Land</a>
                                 </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown ymm-sw " data-wow-delay="0.1s">
+                            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Let Property <b class="caret"></b></a>
+                            <ul class="dropdown-menu navbar-nav">
                                 <li>
-                                    <a class="" href="<?php echo site_url('submit_property');?>">Submit</a>
+                                    <a class="" href="<?php echo site_url('properties');?>">House</a>
+                                </li>
+                                <li>
+                                    <a class="" href="<?php echo site_url('land');?>">Commercial Space</a>
                                 </li>
                             </ul>
                         </li>

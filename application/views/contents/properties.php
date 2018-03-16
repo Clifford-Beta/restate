@@ -94,22 +94,21 @@
                                                 <div class="col-xs-6">
 
                                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City">
-
-                                                        <option>New york, CA</option>
-                                                        <option>Paris</option>
-                                                        <option>Casablanca</option>
-                                                        <option>Tokyo</option>
-                                                        <option>Marraekch</option>
-                                                        <option>kyoto , shibua</option>
+                                                         <option>Karen</option>
+                                                         <option>Kileleleshwa</option>
+                                                         <option>CBD</option>
+                                                         <option>Ngong</option>
+                                                         <option>Kiserian</option>
+                                                         <option>Runda</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-xs-6">
 
                                                     <select id="basic" class="selectpicker show-tick form-control">
-                                                        <option> -Status- </option>
-                                                        <option>Rent </option>
-                                                        <option>Boy</option>
-                                                        <option>used</option>  
+                                                        <option>Status</option>
+                                                        <option>Buy</option>
+                                                        <option>Let</option>
+                                                          
 
                                                     </select>
                                                 </div>
