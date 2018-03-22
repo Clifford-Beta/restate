@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Finding the best choice of land at affordable prices</h1>               
+                        <h1 class="page-title">Finding the best commercial space at affordable prices</h1>
                     </div>
                 </div>
             </div>
@@ -63,11 +63,11 @@
                                 <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a href="<?php echo base_url('property/l/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
+                                            <a href="<?php echo base_url('property/s/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="<?php echo base_url('property/l/').$value['id'];?>"> <?php echo $value['name']; ?> </a></h5>
+                                            <h5><a href="<?php echo base_url('property/s/').$value['id'];?>"> <?php echo $value['name']; ?> </a></h5>
                                             <div class="dot-hr"></div>
                                             <span class="pull-left"><b> Area :</b> <?php echo $value['area'];?>m </span>
                                             <span class="proerty-price pull-right"> Shs. <?php echo $value['price'];?></span>

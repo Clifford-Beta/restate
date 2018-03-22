@@ -98,9 +98,15 @@ class Heavenlink extends CI_Controller
     public function user_properties()
       {
         $data['title']='Inkarealtors | User Property';
-          $data['houses']=$this->main_model->get_many_hse(array('house_owner'=>1),NULL);
-          $data['lands']=$this->main_model->get_many_lnd(array('land_owner'=>1),NULL);
-          $data['spaces']=$this->main_model->get_many_spc(array('space_owner'=>1),NULL);
+        $usr = $this->session->userdata('user');
+        if($usr != NULL){
+            $id=$usr->id;
+        }else{
+            $id=1;
+        }
+          $data['houses']=$this->main_model->get_many_hse(array('house_owner'=>$id),NULL);
+          $data['lands']=$this->main_model->get_many_lnd(array('land_owner'=>$id),NULL);
+          $data['spaces']=$this->main_model->get_many_spc(array('space_owner'=>$id),NULL);
           $this->load->view('/templates/head',$data);
           $this->load->view('/templates/nav',$data);
           $this->load->view('/contents/user_properties',$data);
@@ -113,6 +119,16 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/land');
+        $this->load->view('/templates/footer',$data);
+    }
+
+    public function cmc()
+    {
+        $data['title']='Inkarealtors | Commercial Space';
+        $data['houses']=$this->main_model->get_many_spc(NULL,NULL);
+        $this->load->view('/templates/head',$data);
+        $this->load->view('/templates/nav',$data);
+        $this->load->view('/contents/cmc');
         $this->load->view('/templates/footer',$data);
     }
 
@@ -166,12 +182,12 @@ class Heavenlink extends CI_Controller
         if($this->form_validation->run('editland')!=false){
             $datea = array();
             foreach ($data as $key => $value){
-                if(!empty($value) && $value != ""){
+                if(!empty($value) && $value != "" && $value != '[]'){
                     $datea['land_'.$key] = $value;
                 }
 
             }
-            $res = $this->main_model->update("land",$datea,array('land_id'=>$datea["id"]));
+            $res = $this->main_model->update("land",$datea,array('land_id'=>$data["id"]));
 
 
             if($res != FALSE){
@@ -183,6 +199,8 @@ class Heavenlink extends CI_Controller
         $this->ValidationFailed(validation_errors());
 
     }
+
+
 
 
     
@@ -220,7 +238,8 @@ class Heavenlink extends CI_Controller
                 }
 
             }
-            $res = $this->main_model->update("house",$datea,array('idhouse'=>$datea["id"]));
+            unset($datea['house_id']);
+            $res = $this->main_model->update("house",$datea,array('idhouse'=>$data["id"]));
 
 
             if($res != FALSE){
@@ -242,7 +261,8 @@ class Heavenlink extends CI_Controller
                 }
 
             }
-            $res = $this->main_model->update("space",$datea,array('idspace'=>$datea["id"]));
+            unset($datea['space_id']);
+            $res = $this->main_model->update("space",$datea,array('idspace'=>$data["id"]));
 
 
             if($res != FALSE){
@@ -272,6 +292,14 @@ class Heavenlink extends CI_Controller
         $this->load->view('/templates/head',$data);
         $this->load->view('/contents/login');
     }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('user');
+        redirect('/');
+
+    }
+
     public function dologin(){
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $data = json_decode($stream_clean,true);
@@ -281,7 +309,7 @@ class Heavenlink extends CI_Controller
         
         if($res != NULL){
             // header('Content-Type: application/json');
-            // $this->session->set_userdata('user',$res[0]->username);
+             $this->session->set_userdata('user',$res[0]);
         $this->Success($res[0]);
         }
         $this->Failed(FALSE);
@@ -380,17 +408,74 @@ class Heavenlink extends CI_Controller
             $this->addhouse($data);
         }
     }
-//    public function editor(){
-//        $data['title']='Inkarealtors | Edit Property';
-//        echo json_encode($data);
-//    }
+    public function active()
+    {
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $data = json_decode($stream_clean,true);
+        if(strtolower($data['type'])=='l'){
+           $this->main_model->update('land',array('status'=>$data['status']),array('land_id'=>$data['id']));
+        }else if(strtolower($data['type'])=='s'){
+            $this->main_model->update('space',array('status'=>$data['status']),array('idspace'=>$data['id']));
+        }
+        else{
+            $this->main_model->update('house',array('status'=>$data['status']),array('idhouse'=>$data['id']));
+        }
+        $this->Success("Done");
+    }
+
+    public function suggest()
+    {
+        $suggestions = $this->main_model->suggestions();
+        $rps=array();
+        if($suggestions != NULL){
+                foreach ($suggestions as $key => $value){
+                    array_push($rps,$value->name);
+                }
+        }
+
+        $this->Success($rps);
+
+    }
+    public function search()
+    {
+        $stream_clean = $this->security->xss_clean($this->input->post());
+//        $this->Success($stream_clean);
+        $rules = array();
+        if(array_key_exists('kwarg',$stream_clean)){
+            $rules['house_name'] = $stream_clean['kwarg'];
+        }
+        if(array_key_exists('location',$stream_clean)){
+            $rules['house_location'] = $stream_clean['location'];
+
+        }
+        if(array_key_exists('status',$stream_clean)){
+            $rules['house_status'] = $stream_clean['status'];
+        }
+        $res = $this->main_model->get_sr_hse($rules,NULL);
+        if($res != NULL){
+            $data['title']='Inkarealtors | Properties';
+            $data['houses']=$res;
+            $this->load->view('/templates/head',$data);
+            $this->load->view('/templates/nav',$data);
+            $this->load->view('/contents/properties');
+            $this->load->view('/templates/footer',$data);
+
+        }else{
+            redirect('/');
+        }
+
+    }
     public function doedit_property()
     {
 
         $data = array();
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         parse_str($stream_clean, $data);
-        var_dump($data);
+//        var_dump($data);
+        $imgs = json_decode($data['image'],true);
+        if(empty($imgs)){
+            unset($data['image']);
+        }
         if(strtolower($data['type'])=='land'){
             unset($data['type']);
             $data['lr']=$data['name'];
@@ -408,7 +493,7 @@ class Heavenlink extends CI_Controller
         }
         else{
             unset($data['type']);
-            // unset($data['lr']);
+//             unset($data['lr']);
             $this->edithouse($data);
         }
     }

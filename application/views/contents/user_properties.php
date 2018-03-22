@@ -8,6 +8,7 @@
                 </div>
             </div>
         </div>
+
         <!-- End page header -->
 
         <!-- property area -->
@@ -18,7 +19,7 @@
                     <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
                         <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' onclick="<?php echo base_url('submit_property');?>" class='btn btn-previous btn-default' name='submit' value='Submit New Property'/>
+                                        <a href="<?php echo base_url('submit_property');?>"> <input type='button'  class='btn btn-previous btn-default' name='submit' value='Submit New Property'/></a>
                                     </div>
                                     <div class="clearfix"></div>                                            
                                 </div>
@@ -32,7 +33,7 @@
                                 <div class="col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a "<?php echo base_url('property/h/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
+                                            <a href="<?php echo base_url('property/h/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
                                         </div>
                                         <div class="item-entry overflow">
                                             <h5> <?php echo $value['name']; ?></h5>
@@ -53,12 +54,12 @@
                                                 } ?>
 
                                                 <div class="dealer-action pull-right">
-                                                    <a href="submit-property.html" class="button">Edit </a>
+                                                    <a href="<?php echo base_url('edit/h/').$value['id'];?>" class="button">Edit </a>
                                                     <?php
                                                     if($value['active']==1){?>
-                                                        <a href="#" class="button">Deactivate</a>
+                                                        <a href="#" class="button" onclick="Editor('h',0,<?php echo $value['id'];?>)">Deactivate</a>
                                                     <?php }else{ ?>
-                                                        <a href="#" class="button delete_user_car">Activate</a>
+                                                        <a href="#" class="button delete_user_car" onclick="Editor('h',1,<?php echo $value['id'];?>)">Activate</a>
                                                     <?php } ?>
                                                 </div>
                                             </div>
@@ -75,7 +76,7 @@
                                         <div class="col-md-4 p0">
                                             <div class="box-two proerty-item">
                                                 <div class="item-thumb">
-                                                    <a "<?php echo base_url('property/l/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
+                                                    <a href="<?php echo base_url('property/l/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
                                                 </div>
                                                 <div class="item-entry overflow">
                                                     <h5> <?php echo $value['name']; ?></h5>
@@ -86,12 +87,12 @@
                                                     <div class="property-icon">
 
                                                         <div class="dealer-action pull-right">
-                                                            <a href="submit-property.html" class="button">Edit </a>
+                                                            <a href="<?php echo base_url('edit/l/').$value['id'];?>" class="button">Edit </a>
                                                             <?php
                                                             if($value['active']==1){?>
-                                                                <a href="#" class="button">Deactivate</a>
+                                                                <a href="#" class="button" onclick="Editor('l',0,<?php echo $value['id'];?>)">Deactivate</a>
                                                             <?php }else{ ?>
-                                                                <a href="#" class="button delete_user_car">Activate</a>
+                                                                <a href="#" class="button delete_user_car" onclick="Editor('l',1,<?php echo $value['id'];?>)">Activate</a>
                                                             <?php } ?>
                                                         </div>
                                                     </div>
@@ -108,7 +109,7 @@
                                         <div class="col-md-4 p0">
                                             <div class="box-two proerty-item">
                                                 <div class="item-thumb">
-                                                    <a "<?php echo base_url('property/l/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
+                                                    <a href=<?php echo base_url('property/s/').$value['id'];?>" ><img src="<?php echo base_url('uploads/').$img[0];?>"></a>
                                                 </div>
                                                 <div class="item-entry overflow">
                                                     <h5> <?php echo $value['name']; ?></h5>
@@ -119,12 +120,12 @@
                                                     <div class="property-icon">
 
                                                         <div class="dealer-action pull-right">
-                                                            <a href="submit-property.html" class="button">Edit </a>
+                                                            <a href="<?php echo base_url('edit/s/').$value['id'];?>" class="button">Edit </a>
                                                             <?php
                                                             if($value['active']==1){?>
-                                                                <a href="#" class="button">Deactivate</a>
+                                                                <a href="#" class="button" onclick="Editor('s',0,<?php echo $value['id'];?>)">Deactivate</a>
                                                             <?php }else{ ?>
-                                                                <a href="#" class="button delete_user_car">Activate</a>
+                                                                <a href="#" class="button delete_user_car" onclick="Editor('s',1,<?php echo $value['id'];?>)">Activate</a>
                                                             <?php } ?>
 
 
@@ -144,54 +145,22 @@
         </div>
 
         <script>
-            $( "#active" ).click(function( event ) {
-                jQuery.ajax({
-                    url: '<?php echo base_url('active'); ?>',
-                        data: {'status':1,'id':,'type':},
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    method: 'POST',
-                    type: 'POST', // For jQuery < 1.9
-                    success: function (data) {
-                        $('#loader').hide();
-                        toastr.success("Property edited successfully");
-                        //   console.log( $(".upload-image-form").serialize() );
+            function Editor(type,status,id) {
+                var url = "<?php echo base_url('active'); ?>" ;
+                axios.post(url, {'status':status,'id':id,'type':type})
+                    .then(function (response) {
+                        toastr.success("Done ");
 
 
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $('#loader').hide();
-                        // console.log(XMLHttpRequest,textStatus,errorThrown)
-                        toastr.error(errorThrown);
-                    }
+                    })
+                    .catch(function (error) {
+                        toastr.error(error);
+                    });
 
-                });
+            }
 
-            });
-            $( "#deactive" ).click(function( event ) {
-                jQuery.ajax({
-                    url: '<?php echo base_url('active'); ?>',
-                    data: {'status':0,'id':,'type':},
-                    cache: false,
-                    contentType: JSON,
-                    processData: false,
-                    method: 'POST',
-                    type: 'POST', // For jQuery < 1.9
-                    success: function (data) {
-                        $('#loader').hide();
-                        toastr.success("Property edited successfully");
-                        //   console.log( $(".upload-image-form").serialize() );
-
-
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $('#loader').hide();
-                        // console.log(XMLHttpRequest,textStatus,errorThrown)
-                        toastr.error(errorThrown);
-                    }
-
-                });
-
-            });
+            var data = sessionStorage.getItem('isLogged');
+            if(!data){
+                window.location.replace("<?php echo base_url();?>"); 
+            }
         </script>

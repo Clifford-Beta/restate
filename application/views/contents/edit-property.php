@@ -259,42 +259,65 @@
                 type: 'POST', // For jQuery < 1.9
                 success: function (data) {
 
-                    console.log(data.dta.upload_data)
+                    // console.log(data.dta.upload_data)
                     data.dta.forEach(element => {
                         imgs.push(element.file_name);
+                        // console.log(imgs.length)
                 })
                     ;
-                    console.log(imgs);
+
+                    // alert(JSON.stringify(imgs));
                     toastr.success(data.msg);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     $('#loader').hide();
                     toastr.error(errorThrown);
                 }
-            });
 
+            }).always(function () {
+                console.log("ive called the editor");
+                editer(imgs)
+
+                // console.log(jqXHR);
+            });
+            function editer(img) {
+            // alert(JSON.stringify(img))
                 jQuery.ajax({
                     url: '<?php echo base_url('doedit_property'); ?>',
-                    data: $(".upload-image-form").serialize() + '&image=' + JSON.stringify(imgs)+'&id='+parseInt('<?php echo $id; ?>') ,
+                    data: $(".upload-image-form").serialize() + '&image=' + JSON.stringify(img) + '&id=' + parseInt('<?php echo $id; ?>'),
                     cache: false,
                     contentType: false,
                     processData: false,
                     method: 'POST',
                     type: 'POST', // For jQuery < 1.9
-                    success: function (data) {
+                })
+                    .always(function (jqXHR) {
+                        console.log(jqXHR);
+                        if(jqXHR=="Done"){
+                            toastr.success(jqXHR);
+                        }else{
+                            toastr.error("No value changed");
+                        }
                         $('#loader').hide();
-                        toastr.success("Property edited successfully");
-                        //   console.log( $(".upload-image-form").serialize() );
+                        // console.log(jqXHR);
+                    });
+            }
 
 
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $('#loader').hide();
-                        // console.log(XMLHttpRequest,textStatus,errorThrown)
-                        toastr.error(errorThrown);
-                    }
-
-                });
+                //     success: function (data) {
+                //         $('#loader').hide();
+                //         toastr.success("Property edited successfully");
+                //         //   console.log( $(".upload-image-form").serialize() );
+                //
+                //
+                //     },
+                //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //         $('#loader').hide();
+                //         // console.log(XMLHttpRequest,textStatus,errorThrown)
+                //         toastr.error(errorThrown);
+                //     }
+                //
+                // });
 
                     //   console.log( $(".upload-image-form").serialize() );
  
@@ -304,8 +327,8 @@
 
     });
 
-     var data = sessionStorage.getItem('isLogged');
-            if(!data){
-                window.location.replace("<?php echo base_url();?>");
-            }
+    //  var data = sessionStorage.getItem('isLogged');
+    //         if(!data){
+    //             window.location.replace("<?php echo base_url();?>");
+    //         }
         </script>
