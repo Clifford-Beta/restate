@@ -123,8 +123,7 @@
                                                     <div class="form-group">
                                                         <label>Owner  :</label>
                                                         <select id="basic" name="owner" class="selectpicker show-tick form-control">
-                                                            <option value='1'>Default</option>
-                                                            <option value='' id="here">Me </option>
+                                                            <option value='<?php echo $id; ?>'>User</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -235,7 +234,7 @@
 
              <script>                    
          var elem = document.getElementById('here');
-            elem.value = sessionStorage.getItem('Id');
+            // elem.value = sessionStorage.getItem('Id');
 
         $( "#propertit" ).click(function( event ) {
             $('#loader').show();
@@ -300,8 +299,8 @@
 
     });
 
-     var data = sessionStorage.getItem('isLogged');
-            if(!data){
-                window.location.replace("<?php echo base_url();?>");
-            }
+     //var data = sessionStorage.getItem('isLogged');
+     //       if(!data){
+     //           window.location.replace("<?php //echo base_url();?>//");
+     //       }
         </script>

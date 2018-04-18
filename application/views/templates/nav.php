@@ -1,3 +1,13 @@
+
+<style>
+    img {
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+        border: 0px none;
+        margin-top: -20px;
+    }
+</style>
 <?php
 //var_dump($this->session->get_userdata());
 //var_dump($this->session->userdata('user'));
@@ -26,7 +36,7 @@ if($this->session->userdata('user')==NULL){ ?>
             <div class="col-md-2 col-md-offset-5  col-sm-3 col-sm-offset-1  col-xs-12">
                 <div class="header-half header-social">
                     <ul class="list-inline">
-                        <li><a href="www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.facebook.com/Inkarealtors/"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="www.twitter.com"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="www.instagram.com"><i class="fa fa-instagram"></i></a></li>
@@ -48,7 +58,7 @@ if($this->session->userdata('user')==NULL){ ?>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url('/');?>"><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Inkarealtors"></a>
+            <a class="navbar-brand" href="<?php echo site_url('/');?>"><img style="margin-top: -20px;" src="<?php echo base_url('assets/img/logo.png');?>" alt="Inkarealtors"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

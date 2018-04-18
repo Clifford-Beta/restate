@@ -80,10 +80,10 @@
    
 
         <script>
-var data = sessionStorage.getItem('isLogged');
-            if(data){
-                window.location.replace("<?php echo base_url('submit_property');?>");
-            }
+//var data = sessionStorage.getItem('isLogged');
+//            if(data){
+//                window.location.replace("<?php //echo base_url('submit_property');?>//");
+//            }
 
             $( "#logit" ).click(function( event ) {
   event.preventDefault();
@@ -95,7 +95,9 @@ var data = sessionStorage.getItem('isLogged');
             .then(function (response) {
                 toastr.success("Welcome "+response.data.username);
                 ss = {'name':response.data.username,'email':response.data.email,'isLogged':true,'id':response.data.id};
-                setSess(ss);
+                // setSess(ss);
+                window.location.replace("<?php echo base_url('submit_property');?>");
+
                 console.log(response.data.username);
                 
             })
@@ -115,9 +117,11 @@ var data = sessionStorage.getItem('isLogged');
 
                 console.log(response.data);
                 ss = {'name':data['name'],'email':data['email'],'isLogged':true,'id':response.data.inserted_id};
-                setSess(ss);
+                // setSess(ss);
+                window.location.replace("<?php echo base_url('submit_property');?>");
 
-                
+
+
             })
             .catch(function (error) {
                 toastr.error(error);

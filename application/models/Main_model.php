@@ -115,7 +115,7 @@ function insert($table,$form_data,$pk_name = NULL){
         $this->db->select('idhouse as id, house_name as name, house_location as location, house_description as description,
 		house_area as area, house_price as price, house_bedroom as bedroom, house_bath as bathroom, 
 		house_garage as garage, house_image as image, house_status as status, user.username as owner, user.email as email, house.status as active')->from('house')->join('user','user.id = house_owner');
-        if($rule != NULL){$this->db->like($rule);}
+        if($rule != NULL){$this->db->or_like($rule);}
         if($limit != NULL){$this->db->limit($limit);}
 //		 $this->db->where('status',1);
         $this->db->order_by('house.create_time', 'DESC');

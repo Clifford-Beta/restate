@@ -13,7 +13,7 @@
                                 <img src="<?php echo base_url('assets/img/footer-logo.png');?>" alt="" class="wow pulse" data-wow-delay="1s">
                                 <!--<p>Heavenlink Properties is located along Ngong Road at Set Green Hill Plaza</p>-->
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> Karen Professional Center Along Karen Road Second Floor Room F6 </li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> Karen Professional Center Along Karen Road First Floor Room M1C </li>
                                     <li><i class="pe-7s-mail strong"> </i> info@inkarealtors.com</li>
                                     <li><i class="pe-7s-call strong"> </i>  +254 700 095 967</li>
                                 </ul>
@@ -38,47 +38,25 @@
                             <div class="single-footer news-letter">
                                 <h4> Submit Your Feedback</h4>
                                 <div class="footer-title-line"></div>
-                                <!--<p>Lorem ipsum dolor sit amet, nulla  suscipit similique quisquam molestias. Vel unde, blanditiis.</p>-->
-
-                                <!--<form>
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="E-mail ... ">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
-                                        </span>
-                                    </div>
-                                   /input-group 
-                                </form>-->
-                                 <form>
+                                 <form action="<?php echo base_url('email'); ?>" method="post">
                                 <div class="row">
-                                    <!--<div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="firstname">Firstname</label>
-                                            <input type="text" class="form-control" id="firstname">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="lastname">Lastname</label>
-                                            <input type="text" class="form-control" id="lastname">
-                                        </div>
-                                    </div>-->
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email">
+                                            <input type="text" class="form-control" id="email" name="email" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="subject">Subject</label>
-                                            <input type="text" class="form-control" id="subject">
+                                            <input type="text" class="form-control" id="subject" name="subject" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="message">Message</label>
-                                            <textarea id="message" class="form-control"></textarea>
+                                            <textarea id="message" class="form-control" name="message" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-center">
@@ -88,15 +66,7 @@
                                 <!-- /.row -->
                             </form> 
 
-                                <!--<div class="social pull-right"> 
-                                    <ul>
-                                        <li><a class="wow fadeInUp animated" href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec" data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.6s"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul> 
-                                </div>-->
+
                             </div>
                         </div>
 

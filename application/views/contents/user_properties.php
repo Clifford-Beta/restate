@@ -159,8 +159,8 @@
 
             }
 
-            var data = sessionStorage.getItem('isLogged');
-            if(!data){
-                window.location.replace("<?php echo base_url();?>"); 
-            }
+            //var data = sessionStorage.getItem('isLogged');
+            //if(!data){
+            //    window.location.replace("<?php //echo base_url();?>//");
+            //}
         </script>

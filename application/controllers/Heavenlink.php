@@ -9,13 +9,15 @@ class Heavenlink extends CI_Controller
     {
     	parent::__construct();
         $this->load->helper('url');
-        $this->output->cache(0);
+//        $this->output->cache(0);
 
     }
     public function index()
     {
     	$data['title']='Inkarealtors | Home';
-       $data['houses']=$this->main_model->get_many_hse(NULL,8);
+
+       $data['houses']=$this->main_model->get_many_hse(array('status'=>1),8);
+//       var_dump($data);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/index');
@@ -24,7 +26,8 @@ class Heavenlink extends CI_Controller
    public function properties()
     {
     	$data['title']='Inkarealtors | Properties';
-        $data['houses']=$this->main_model->get_many_hse(NULL,NULL);
+        $data['houses']=$this->main_model->get_many_hse(array('status'=>1),NULL);
+
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/properties');
@@ -66,6 +69,16 @@ class Heavenlink extends CI_Controller
     }
     public function profile()
     {
+        $id=0;
+        $usr = $this->session->userdata('user');
+        if($usr != NULL){
+            $id = $usr->id;
+        }else{
+            redirect('/login');
+        }
+        $data["user"] = $this->main_model->get_specific('user',array("id"=>$id));
+
+
         $data['title']='Inkarealtors | Profile';
 
         $this->load->view('/templates/head',$data);
@@ -115,7 +128,7 @@ class Heavenlink extends CI_Controller
     public function land()
     {
     	$data['title']='Inkarealtors | Land';
-        $data['houses']=$this->main_model->get_many_lnd(NULL,NULL);
+        $data['houses']=$this->main_model->get_many_lnd(array('status'=>1),NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/land');
@@ -125,7 +138,7 @@ class Heavenlink extends CI_Controller
     public function cmc()
     {
         $data['title']='Inkarealtors | Commercial Space';
-        $data['houses']=$this->main_model->get_many_spc(NULL,NULL);
+        $data['houses']=$this->main_model->get_many_spc(array('status'=>1),NULL);
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
         $this->load->view('/contents/cmc');
@@ -286,6 +299,9 @@ class Heavenlink extends CI_Controller
     }
      public function login()
     {
+        if($this->session->userdata('user')!=NULL){
+            redirect('/submit_property');
+        }
         $data['title']='Inkarealtors | Login';
         
 
@@ -352,16 +368,25 @@ class Heavenlink extends CI_Controller
     }
     public function submit_property()
     {
+
+        $usr = $this->session->userdata('user');
+        if($usr==NULL){
+            redirect('/login');
+        }
+        $data['id'] = $usr->id;
         $data['title']='Inkarealtors | Submit Property';
         $data['error']='';
         $this->load->view('/templates/head',$data);
         $this->load->view('/templates/nav',$data);
-        $this->load->view('/contents/submit-property');
+        $this->load->view('/contents/submit-property',$data);
         $this->load->view('/templates/footer',$data);
     }
 
     public function edit_property($type,$id)
     {
+        if($this->session->userdata('user')==NULL){
+            redirect('/login');
+        }
         $data['title']='Inkarealtors | Edit Property';
         $data['error']='';
         $data['id'] = $id;
@@ -387,6 +412,7 @@ class Heavenlink extends CI_Controller
         $data = array();
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         parse_str($stream_clean, $data);
+//        var_dump($data);
         if(strtolower($data['type'])=='land'){
             unset($data['type']);
             $data['lr']=$data['name'];
@@ -452,7 +478,7 @@ class Heavenlink extends CI_Controller
             $rules['house_status'] = $stream_clean['status'];
         }
         $res = $this->main_model->get_sr_hse($rules,NULL);
-        if($res != NULL){
+
             $data['title']='Inkarealtors | Properties';
             $data['houses']=$res;
             $this->load->view('/templates/head',$data);
@@ -460,9 +486,6 @@ class Heavenlink extends CI_Controller
             $this->load->view('/contents/properties');
             $this->load->view('/templates/footer',$data);
 
-        }else{
-            redirect('/');
-        }
 
     }
     public function doedit_property()
@@ -508,6 +531,44 @@ class Heavenlink extends CI_Controller
         }
     }
 
+    public function email(){
+
+        $stream_clean = $this->security->xss_clean($this->input->post());
+//        $this->Success($stream_clean);
+        $rules = array();
+        if(array_key_exists('email',$stream_clean)){
+            $rules['email'] = $stream_clean['email'];
+        }
+        if(array_key_exists('subject',$stream_clean)){
+            $rules['subject'] = $stream_clean['subject'];
+
+        }
+        if(array_key_exists('message',$stream_clean)){
+            $rules['message'] = $stream_clean['message'];
+        }
+        $this->load->library('email');
+
+        $this->email->initialize(array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'smtp.sendgrid.net',
+            'smtp_user' => 'inka-realtors',
+            'smtp_pass' => 'inka123#realtors',
+            'smtp_port' => 587,
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ));
+
+        $this->email->from($rules['email'], 'Client');
+        $this->email->to('info@inkarealtors.com');
+//        $this->email->to('betaclifford@gmail.com');
+        $this->email->subject($rules['subject']);
+        $this->email->message($rules['message']);
+        $this->email->send();
+
+        $this->email->print_debugger();
+        redirect("/");
+    }
+
 
     public function do_upload(){
     
@@ -535,6 +596,8 @@ class Heavenlink extends CI_Controller
             ));
 
             $uploadData = array();
+            if(array_key_exists('file',$_FILES)){
+        
             $filesCount = count($_FILES['file']['name']);
             for($i = 0; $i < $filesCount; $i++){
                 $_FILES['userFile']['name'] = $_FILES['file']['name'][$i];
@@ -568,6 +631,9 @@ class Heavenlink extends CI_Controller
             $errors = array('error' => "File upload failed");               
             
                 $this->Failed($errors);
+        }else{
+            $this->Failed("No file uploaded");
+        }
 
             
 

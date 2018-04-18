@@ -28,7 +28,16 @@
                                 <div class="col-sm-3 col-sm-offset-1">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <img src="assets/img/avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                                            <?php
+                                            $img = "";
+                                            if (!empty($user)) {
+                                                $img = json_decode($user[0]->profile)[0];
+//                                                var_dump($img);
+
+                                                }
+
+                                            ?>
+                                            <img src="<?php echo base_url('uploads/').$img;?>" class="picture-src" id="wizardPicturePreview" title=""/>
                                             <input type="file" id="wizard-picture">
                                         </div>
                                         <h6>Choose Picture</h6>
@@ -39,12 +48,36 @@
 
                                     <div class="form-group">
                                         <label>First Name</label>
+                                        <?php
+                                        if (!empty($user)) {
+                                            ?>
+
+                                            <input name="firstname" id="firstname" type="text" class="form-control" value="<?php
+                                            $name = explode(" ", $user[0]->username);
+                                            echo $name[0]; ?>">
+
+                                        <?php }else{
+                                        ?>
                                         <input name="firstname" id="firstname" type="text" class="form-control" placeholder="First name...">
+
+                                        <?php } ?>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input name="email" id="email" type="email" class="form-control" placeholder="user@email.com">
+                                        <?php
+                                        if (!empty($user)) {
+                                            ?>
+
+                                            <input name="email" id="email" type="email" class="form-control"  value="<?php
+                                            echo $user[0]->email; ?>">
+
+                                        <?php }else{
+                                            ?>
+                                            <input name="email" id="email" type="email" class="form-control" placeholder="user@email.com">
+
+                                        <?php } ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
@@ -55,11 +88,36 @@
                                 <div class="col-sm-4 padding-top-25">
                                     <div class="form-group">
                                         <label>Last Name</label>
-                                        <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Last name...">
+                                        <?php
+                                        if (!empty($user)) {
+                                            ?>
+
+                                            <input name="lastname" id="lastname" type="text" class="form-control"  value="<?php
+                                            $name = explode(" ", $user[0]->username);
+                                            echo $name[1]; ?>">
+
+                                        <?php }else{
+                                            ?>
+                                            <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Last name...">
+
+                                        <?php } ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input name="phone" id="phone" type="text" class="form-control" placeholder="0700000000">
+                                        <?php
+                                        if (!empty($user)) {
+                                            ?>
+
+                                            <input name="phone" id="phone" type="text" class="form-control"  value="<?php
+                                            echo $user[0]->phone; ?>">
+
+                                        <?php }else{
+                                            ?>
+                                            <input name="phone" id="phone" type="text" class="form-control" placeholder="0700000000">
+
+                                        <?php } ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Confirm Pasword</label>
@@ -82,8 +140,8 @@
     </div>
 
     <script>
-         var data = sessionStorage.getItem('isLogged');
-            if(!data){
-                window.location.replace("<?php echo base_url();?>"); 
-            }
+         //var data = sessionStorage.getItem('isLogged');
+         //   if(!data){
+         //       window.location.replace("<?php //echo base_url();?>//");
+         //   }
     </script>
